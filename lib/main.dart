@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_x_project/home.dart';
+import 'package:hackathon_x_project/frame.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      // title: 'Flutter Demo',
-      home: Home(),
+      home: Frame(),
     );
   }
 }
