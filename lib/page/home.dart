@@ -18,11 +18,11 @@ class _HomeState extends State<Home> {
       body: 
       SlidingUpPanel(
         color: Colors.transparent,
-        minHeight: 45,
+        minHeight: 30,
         panel: Container(
           decoration: const BoxDecoration(
             color: Colors.redAccent, // background color of panel
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0),), // rounded corners of panel
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0),), // rounded corners of panel
           ),
           child: const Column(
             mainAxisSize: MainAxisSize.min,
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
         collapsed: Container(
           decoration: const BoxDecoration(
             color: Colors.redAccent,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0),),
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0),),
           ),
           child: const Column(
             mainAxisSize: MainAxisSize.min,
@@ -64,7 +64,7 @@ class BarIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       child: Container(
         width: 40, height: 3,
         decoration: const BoxDecoration(
