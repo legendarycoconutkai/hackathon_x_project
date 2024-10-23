@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:hackathon_x_project/page/home.dart';
 import 'package:hackathon_x_project/page/calendar.dart';
+import 'package:hackathon_x_project/page/test.dart';
 
 class Frame extends StatefulWidget {
   const Frame({super.key});
@@ -17,6 +18,7 @@ class _FrameState extends State<Frame> {
   final pages = [
     const Home(),
     const Calendar(),
+    Room3DDecorator(),
   ];
 
   @override
@@ -29,6 +31,7 @@ class _FrameState extends State<Frame> {
         items: const <Widget>[
           Icon(Icons.home, size: 30, color: Colors.white),
           Icon(Icons.calendar_month, size: 30, color: Colors.white),
+          Icon(Icons.room, size: 30, color: Colors.white),
         ],
         color: Colors.black,
         buttonBackgroundColor: Colors.black,
