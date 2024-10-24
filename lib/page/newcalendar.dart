@@ -14,41 +14,45 @@ class _NewcalendarState extends State<Newcalendar> {
 
 DateTime _selectedDay = DateTime.now();
 
-   ValueNotifier<Map<DateTime,List<dynamic>>> dateTimeMapNotifier = ValueNotifier({});
+   ValueNotifier<Map<String ,dynamic>> dateTimeMapNotifier = ValueNotifier({});
 
-  List<Map<DateTime, List<String>>> predefinedArray = [
-    {DateTime(2024,10,23): ['happy day hapi']},
-    {DateTime(2024,10,24): ['susah sedih']},
-    {DateTime(2024,10,25):['i dontwan go study']},
+  List<Map<String, dynamic>> predefinedEvents = [
+    {
+      'date': DateTime(2024, 10, 23) ,
+      'events': ['happy day hapi'],
+      'image':'assets/milktea.jpg'
+      },
+    {
+      'date': DateTime(2024, 10, 24) ,
+      'events': ['susah sedih'],
+      'image':'assets/exam.jpg'
+      },    
+    {
+      'date': DateTime(2024, 10, 25) ,
+      'events': ['i dontwan go study'],
+      'image': 'assets/nostudy.jpeg'
+      },
+    
   ];
 
-   DateTime _normalizeDate(DateTime date) {
-    return DateTime(date.year, date.month, date.day);
-  }
-
-  void updateMapWithPredefinedArray(){
-    Map<DateTime, List<dynamic>> newMap = {};
-
-    for (var entry in predefinedArray){
-      entry.forEach((key,value){
-        DateTime normalizedKey = _normalizeDate(key);
-        newMap[normalizedKey] = value;
-      });
-      
+  Map<String, dynamic>? _getSelectedDayData (DateTime selectedDay){
+    for (var event in predefinedEvents){
+      if (isSameDay(event['date'], selectedDay)){
+        return event;
+      }
     }
-
-    dateTimeMapNotifier.value= newMap;
+    return null;
   }
   
 
   @override
   void initState() {
         super.initState();
-        updateMapWithPredefinedArray();
   }
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic>? selectedDayData = _getSelectedDayData(_selectedDay);
     return Scaffold(
       
       body: Column(
@@ -64,39 +68,49 @@ DateTime _selectedDay = DateTime.now();
               selectedDayPredicate: (day)=>isSameDay(_selectedDay, day),
               onDaySelected: (selectedDay, focusedDay){
                 setState(() {
-                  _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day);
+                  _selectedDay = selectedDay;
                 });
               },
               focusedDay: _selectedDay,
               firstDay: DateTime.utc(2010,10,16),
-              lastDay: DateTime.utc(2030,3,14),
-              eventLoader: (day) {
-                DateTime normalizedDay = _normalizeDate(day);
-                var events = dateTimeMapNotifier.value[normalizedDay] ?? [];
-                print('events for $normalizedDay: $events');
-                return events;
-              },
+              lastDay: DateTime.utc(2030,3,14),            
               calendarStyle: CalendarStyle(
-                markerDecoration: BoxDecoration(
-                  color: Colors.grey[350],
-                  shape: BoxShape.circle
-                ),
-                markersMaxCount: 1,
-                markerSizeScale: 0.3,
                 outsideDaysVisible: false
+              ),
+
+              calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context,day,focusedDay){
+                  Map<String, dynamic>? dayData = _getSelectedDayData(day);
+                  final imagePath = dayData != null ? dayData['image']: null;           
+                    return Container(
+                      decoration: BoxDecoration(
+                        image: imagePath != null
+                        ?DecorationImage(image: AssetImage(imagePath),
+                        fit: BoxFit.cover
+                      )
+                      :null,
+                    ),
+                    alignment: Alignment.center,
+                    
+                    child: Text(
+                      day.day.toString(),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black
+                      ),
+                    ),
+                    );
+                },
               ),                     
               ),
 
         SizedBox(height: 10),
 
         Expanded(
-          child: ValueListenableBuilder<Map<DateTime, List<dynamic>>>(
-            valueListenable: dateTimeMapNotifier, 
-            builder: (context, value, child){
-              List<dynamic> selectedEvents = value[_selectedDay] ?? [];
-              return ListView.builder(
+          child: selectedDayData != null
+               ? ListView.builder(
                 shrinkWrap: true,
-                itemCount: selectedEvents.length,
+                itemCount: selectedDayData['events'].length,
                 itemBuilder: (context, index){
                 return Container(
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -116,7 +130,18 @@ DateTime _selectedDay = DateTime.now();
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white
-                            ),),
+                            ),
+                            child: selectedDayData['image'] !=null
+                            ? ClipOval(
+                              child: Image.asset(
+                                selectedDayData['image'],
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                            :null,
+                            ),
+
+                            
 
                             const SizedBox(height: 5,),
 
@@ -146,7 +171,7 @@ DateTime _selectedDay = DateTime.now();
 
                       Expanded(
                         child: Text(
-                              selectedEvents[index].toString(),
+                              selectedDayData['events'][index].toString(),
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,),
@@ -156,14 +181,17 @@ DateTime _selectedDay = DateTime.now();
                       ),
                     );
                   },             
-                );
-              },
-            ),
-        )
-        ]
-      )
-        );
-       
-
+                )
+                : Center(
+                  child: Text(
+                    'no events for this day',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+        ),
+        ],
+      ),
+    );
   }
+      
 }
