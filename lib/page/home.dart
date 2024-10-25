@@ -207,7 +207,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     border: InputBorder.none,
                                     contentPadding: const EdgeInsets.symmetric(horizontal: 20)
                                   ),
-                                  scrollPadding: const EdgeInsets.only(bottom: 50),
                                 ),
                               ),
                               const SizedBox(width: 8,),
@@ -230,6 +229,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
+                      SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
                     ],
                   ),
               ),
