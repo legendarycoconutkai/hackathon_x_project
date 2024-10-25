@@ -18,7 +18,7 @@ class _FrameState extends State<Frame> {
   final pages = [
     const Home(),
     const Newcalendar(),
-    Room3DDecorator(),
+    const Room3DDecorator(),
   ];
 
   @override

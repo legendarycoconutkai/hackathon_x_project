@@ -46,7 +46,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-    TabController _tabController = TabController(length: 3, vsync: this);
+    TabController tabController = TabController(length: 3, vsync: this);
 
     return Scaffold(
       body: 
@@ -68,7 +68,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   color: Colors.white,
                 ),
                 child: TabBar(
-                  controller: _tabController,
+                  controller: tabController,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
                   labelStyle: const TextStyle(
@@ -86,16 +86,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
               Container(
                 decoration: const BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.white,
                 ),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height*0.43 - 71,
                 child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    inventory,
-                    const Text("2"),
-                    const Text("3"),
+                  controller: tabController,
+                  children: const [
+                    Inventory(),
+                    Inventory(),
+                    Inventory(),
                   ],
                 ),
               ),
@@ -207,6 +207,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     border: InputBorder.none,
                                     contentPadding: const EdgeInsets.symmetric(horizontal: 20)
                                   ),
+                                  scrollPadding: const EdgeInsets.only(bottom: 50),
                                 ),
                               ),
                               const SizedBox(width: 8,),

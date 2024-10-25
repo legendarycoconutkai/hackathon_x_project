@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' as vector_math;
-import 'dart:math' as math;
 
 class Room3DDecorator extends StatefulWidget {
   const Room3DDecorator({super.key});

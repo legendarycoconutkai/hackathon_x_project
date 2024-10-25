@@ -20,17 +20,17 @@ DateTime _selectedDay = DateTime.now();
     {
       'date': DateTime(2024, 10, 23) ,
       'events': ['happy day hapi'],
-      'image':'assets/milktea.jpg'
+      'image':'assets/images/milktea.jpg'
       },
     {
       'date': DateTime(2024, 10, 24) ,
       'events': ['susah sedih'],
-      'image':'assets/exam.jpg'
+      'image':'assets/images/exam.jpg'
       },    
     {
       'date': DateTime(2024, 10, 25) ,
       'events': ['i dontwan go study'],
-      'image': 'assets/nostudy.jpeg'
+      'image': 'assets/images/nostudy.jpeg'
       },
     
   ];
@@ -57,7 +57,7 @@ DateTime _selectedDay = DateTime.now();
       
       body: Column(
         children: [
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
 
           TableCalendar(
           headerStyle: const HeaderStyle(
@@ -74,7 +74,7 @@ DateTime _selectedDay = DateTime.now();
               focusedDay: _selectedDay,
               firstDay: DateTime.utc(2010,10,16),
               lastDay: DateTime.utc(2030,3,14),            
-              calendarStyle: CalendarStyle(
+              calendarStyle: const CalendarStyle(
                 outsideDaysVisible: false
               ),
 
@@ -94,7 +94,7 @@ DateTime _selectedDay = DateTime.now();
                     
                     child: Text(
                       day.day.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black
                       ),
@@ -104,7 +104,7 @@ DateTime _selectedDay = DateTime.now();
               ),                     
               ),
 
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
 
         Expanded(
           child: selectedDayData != null
@@ -113,8 +113,8 @@ DateTime _selectedDay = DateTime.now();
                 itemCount: selectedDayData['events'].length,
                 itemBuilder: (context, index){
                 return Container(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  padding: EdgeInsets.all(20),
+                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10),
@@ -127,7 +127,7 @@ DateTime _selectedDay = DateTime.now();
                           Container(
                             width: 70,
                             height: 70,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white
                             ),
@@ -149,17 +149,17 @@ DateTime _selectedDay = DateTime.now();
                               children: [
                                 Text(
                                   DateFormat('dd MMM').format(_selectedDay),
-                                style: TextStyle(fontSize: 14),),
+                                style: const TextStyle(fontSize: 14),),
 
                                 Text(
                                   DateFormat('EEEE').format(_selectedDay),
-                                style: TextStyle(fontSize: 12),)
+                                style: const TextStyle(fontSize: 12),)
                               ],
                             ),
                         ],
                       ),
 
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
 
                       Container(
                         width: 1,
@@ -167,12 +167,12 @@ DateTime _selectedDay = DateTime.now();
                         color: Colors.black54,
                       ),
 
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
 
                       Expanded(
                         child: Text(
                               selectedDayData['events'][index].toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,),
                             ),
@@ -182,7 +182,7 @@ DateTime _selectedDay = DateTime.now();
                     );
                   },             
                 )
-                : Center(
+                : const Center(
                   child: Text(
                     'no events for this day',
                     style: TextStyle(fontSize: 16),
