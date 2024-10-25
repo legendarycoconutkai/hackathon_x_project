@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:hackathon_x_project/page/home.dart';
-import 'package:hackathon_x_project/page/calendar.dart';
+import 'package:hackathon_x_project/page/newcalendar.dart';
 import 'package:hackathon_x_project/page/test.dart';
 
 class Frame extends StatefulWidget {
@@ -17,7 +17,7 @@ class _FrameState extends State<Frame> {
 
   final pages = [
     const Home(),
-    const Calendar(),
+    const Newcalendar(),
     Room3DDecorator(),
   ];
 
