@@ -39,6 +39,10 @@ dependencies:
   table_calendar: ^3.1.2
   curved_navigation_bar: ^1.0.6
   intl: ^0.17.0
+  flutter_dotenv: ^5.2.1
+  google_generative_ai: ^0.4.6
+  gif: ^2.3.0
+
 
 dev_dependencies:
   flutter_test:
@@ -64,10 +68,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/milktea.jpg
-     - assets/exam.jpg
-     - assets/nostudy.jpeg
-     
+    - assets/images/
+    - assets/gif/
+    - .env
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
