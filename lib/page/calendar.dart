@@ -48,11 +48,11 @@ class _CalendarState extends State<Calendar> {
               firstDay: DateTime.utc(2010,10,16),
               lastDay: DateTime.utc(2030,3,14))            
           ),
-          SizedBox(height: 30,width: 30),
+          const SizedBox(height: 30,width: 30),
 
           Text(
             _focusedDay.toString().split(" ")[0],
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
             )
         ],
       ),

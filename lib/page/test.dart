@@ -3,6 +3,8 @@ import 'package:vector_math/vector_math.dart' as vector_math;
 import 'dart:math' as math;
 
 class Room3DDecorator extends StatefulWidget {
+  const Room3DDecorator({super.key});
+
   @override
   _Room3DDecoratorState createState() => _Room3DDecoratorState();
 }
@@ -10,16 +12,16 @@ class Room3DDecorator extends StatefulWidget {
 class _Room3DDecoratorState extends State<Room3DDecorator> {
   double _rotationX = 0;
   double _rotationY = 0;
-  List<Furniture> _furniture = [];
+  final List<Furniture> _furniture = [];
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('3D Room Decorator'),
+        title: const Text('3D Room Decorator'),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: _showFurnitureDialog,
           ),
         ],
@@ -38,7 +40,7 @@ class _Room3DDecoratorState extends State<Room3DDecorator> {
               ..rotateX(_rotationX)
               ..rotateY(_rotationY),
             alignment: Alignment.center,
-            child: Container(
+            child: SizedBox(
               width: 300,
               height: 300,
               child: Stack(
@@ -58,7 +60,7 @@ class _Room3DDecoratorState extends State<Room3DDecorator> {
                   ),
                   
                   // Furniture
-                  ..._furniture.map((furniture) => _buildFurniture(furniture)).toList(),
+                  ..._furniture.map((furniture) => _buildFurniture(furniture)),
                 ],
               ),
             ),
@@ -114,19 +116,19 @@ class _Room3DDecoratorState extends State<Room3DDecorator> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Add Furniture'),
+          title: const Text('Add Furniture'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: Text('Table'),
+                title: const Text('Table'),
                 onTap: () {
                   setState(() {
                     _furniture.add(
                       Furniture(
                         type: FurnitureType.table,
-                        position: Offset(100, 100),
-                        size: Size(60, 40),
+                        position: const Offset(100, 100),
+                        size: const Size(60, 40),
                         color: Colors.brown,
                       ),
                     );
@@ -135,14 +137,14 @@ class _Room3DDecoratorState extends State<Room3DDecorator> {
                 },
               ),
               ListTile(
-                title: Text('Chair'),
+                title: const Text('Chair'),
                 onTap: () {
                   setState(() {
                     _furniture.add(
                       Furniture(
                         type: FurnitureType.chair,
-                        position: Offset(150, 150),
-                        size: Size(30, 30),
+                        position: const Offset(150, 150),
+                        size: const Size(30, 30),
                         color: Colors.brown[700]!,
                       ),
                     );
@@ -151,14 +153,14 @@ class _Room3DDecoratorState extends State<Room3DDecorator> {
                 },
               ),
               ListTile(
-                title: Text('Bed'),
+                title: const Text('Bed'),
                 onTap: () {
                   setState(() {
                     _furniture.add(
                       Furniture(
                         type: FurnitureType.bed,
-                        position: Offset(50, 50),
-                        size: Size(100, 180),
+                        position: const Offset(50, 50),
+                        size: const Size(100, 180),
                         color: Colors.blue[200]!,
                       ),
                     );

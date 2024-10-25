@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:gif/gif.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:hackathon_x_project/backend/message.dart';
+import 'package:hackathon_x_project/widget/inventory.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:hackathon_x_project/backend/message.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   final TextEditingController _controller = TextEditingController();
   final List<Message> _messages = [
@@ -45,6 +45,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    TabController _tabController = TabController(length: 3, vsync: this);
+
     return Scaffold(
       body: 
       SlidingUpPanel(
@@ -56,13 +59,44 @@ class _HomeState extends State<Home> {
             color: Colors.white, // background color of panel
             borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0),), // rounded corners of panel
           ),
-          child: const Column(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              BarIndicator(),
-              Center(
-                child: Text("This is the sliding Widget",
-                  style: TextStyle(color: Colors.white),
+              const BarIndicator(),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: TabBar(
+                  controller: _tabController,
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.grey,
+                  labelStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  indicatorColor: Colors.black,
+                  dividerColor: Colors.transparent,
+                  tabs: const [
+                    Tab(text: 'Furnitures'),
+                    Tab(text: 'Toys'),
+                    Tab(text: 'Treats'),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.grey,
+                ),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height*0.43 - 71,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    inventory,
+                    const Text("2"),
+                    const Text("3"),
+                  ],
                 ),
               ),
             ],
@@ -204,7 +238,7 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.only(bottom:150.0),
             child: Center(
               child: Image(
-                image: AssetImage('assets/gif/dog1_smaller.gif'),
+                image: AssetImage('assets/gif/dog1_bigger.gif'),
               ),
             ),
           )
