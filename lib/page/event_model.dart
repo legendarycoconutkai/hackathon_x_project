@@ -22,11 +22,11 @@ class EventDetail {
 final List<EventDetail> sharedEvents = [
   EventDetail(
     date: DateTime(2024, 10, 23),
+    title: '',
     time: '10:00 AM',
     description: 'happy day hapi',
-    title: 'Happy Day',
-    emoji: 'assets/hapi.jpg',
-    image: 'assets/milktea.jpg',
+    emoji: 'assets/images/hapi.jpg',
+    image: 'assets/images/milktea.jpg',
   ),
   EventDetail(
     date: DateTime(2024, 10, 23),
@@ -40,16 +40,16 @@ final List<EventDetail> sharedEvents = [
     title: 'Sad Day',
     time: '02:30 PM',
     description: 'susah sedih',
-    emoji: 'assets/sad.jpg',
-    image: 'assets/exam.jpg',
+    emoji: 'assets/images/sad.jpg',
+    image: 'assets/images/exam.jpg',
   ),
   EventDetail(
     date: DateTime(2024, 10, 25),
     title: 'Study Day',
     time: '09:00 AM',
     description: 'i dontwan go study',
-    emoji: 'assets/bored.jpg',
-    image: 'assets/nostudy.jpeg',
+    emoji: 'assets/images/bored.jpg',
+    image: 'assets/images/nostudy.jpeg',
   ),
 ];
 
