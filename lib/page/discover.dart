@@ -40,7 +40,7 @@ class Discover extends StatelessWidget {
             const SizedBox(height: 9),
             GestureDetector(
               child: const Image(
-                image: AssetImage("assets/images/discover_banner.png"),
+                image: AssetImage("assets/images/toystory_banner.png"),
               )
             ),
             const SizedBox(height: 18),

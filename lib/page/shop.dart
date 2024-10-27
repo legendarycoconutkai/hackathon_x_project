@@ -40,7 +40,7 @@ class Shop extends StatelessWidget {
             ),
             const SizedBox(height: 9),
             GestureDetector(
-              child: const Image(image: NetworkImage("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS2iQ9VR5X59kKxAYkGryGzsl-eXdDRstAZWoX2OJzpucba751eHNeGICtEwPDtsnu5Hf1Vl2iOJoijoxK4h9kLrotIY1HS7QL32gNrwpCC14RkFAzHnlxJRzbjwlzfmoPQQDarBioYPHxmYmEZOy4avuAoJMiYdjp3TgpA-zuimaSWnYijUrv9kJHCRc/s851/Dungeon%20Meshi%20Banner.JPG"))
+              child: const Image(image: AssetImage("assets/images/toystory_banner.png")),
             ),
             const SizedBox(height: 18),
             const Padding(
