@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_x_project/page/event_model.dart';
+import 'package:hackathon_x_project/page/journalpage.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
@@ -33,145 +34,163 @@ class _NewcalendarState extends State<Newcalendar> {
     EventDetail? selectedDayData = _getSelectedDayData(_selectedDay);
     
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          SizedBox(height: 100),
-
-          TableCalendar(
-            headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-            ),
-            availableGestures: AvailableGestures.all,
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-              });
-            },
-            focusedDay: _selectedDay,
-            firstDay: DateTime.utc(2010, 10, 16),
-            lastDay: DateTime.utc(2030, 3, 14),
-            calendarStyle: CalendarStyle(
-              outsideDaysVisible: false,
-            ),
-            calendarBuilders: CalendarBuilders(
-              defaultBuilder: (context, day, focusedDay) {
-                EventDetail? dayData = _getSelectedDayData(day);
-                final emojiPath = dayData?.emoji;
-
-                return Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: emojiPath != null
-                        ? DecorationImage(
-                            image: AssetImage(emojiPath),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    day.day.toString(),
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: emojiPath != null ? Colors.white : Colors.black,
-                      fontWeight:
-                          emojiPath != null ? FontWeight.w700 : FontWeight.w400,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-
-          SizedBox(height: 10),
-
-          Align(
-            alignment: Alignment.topCenter,
-            child: selectedDayData != null && selectedDayData.description.isNotEmpty
-                ? Container(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Column(
+          Column(
+            children: [
+              SizedBox(height: 100),
+          
+              TableCalendar(
+                headerStyle: const HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                ),
+                availableGestures: AvailableGestures.all,
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                  });
+                },
+                focusedDay: _selectedDay,
+                firstDay: DateTime.utc(2010, 10, 16),
+                lastDay: DateTime.utc(2030, 3, 14),
+                calendarStyle: CalendarStyle(
+                  outsideDaysVisible: false,
+                ),
+                calendarBuilders: CalendarBuilders(
+                  defaultBuilder: (context, day, focusedDay) {
+                    EventDetail? dayData = _getSelectedDayData(day);
+                    final emojiPath = dayData?.emoji;
+          
+                    return Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: emojiPath != null
+                            ? DecorationImage(
+                                image: AssetImage(emojiPath),
+                                fit: BoxFit.cover,
+                              )
+                            : null,
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        day.day.toString(),
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: emojiPath != null ? Colors.grey : Colors.black,
+                          fontWeight:
+                              emojiPath != null ? FontWeight.w700 : FontWeight.w400,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+          
+              SizedBox(height: 10),
+          
+              Align(
+                alignment: Alignment.topCenter,
+                child: selectedDayData != null && selectedDayData.description.isNotEmpty
+                    ? Container(
+                        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              width: 70,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                              ),
-                              child: selectedDayData.image != null
-                                  ? ClipOval(
-                                      child: Image.asset(
-                                        selectedDayData.image!,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    )
-                                  : null,
-                            ),
-
-                            const SizedBox(height: 5),
-
                             Column(
                               children: [
-                                Text(
-                                  DateFormat('dd MMM').format(_selectedDay),
-                                  style: TextStyle(fontSize: 14),
+                                Container(
+                                  width: 70,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                  ),
+                                  child: selectedDayData.image != null
+                                      ? ClipOval(
+                                          child: Image.asset(
+                                            selectedDayData.image!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )
+                                      : null,
                                 ),
-                                Text(
-                                  DateFormat('EEEE').format(_selectedDay),
-                                  style: TextStyle(fontSize: 12),
+          
+                                const SizedBox(height: 5),
+          
+                                Column(
+                                  children: [
+                                    Text(
+                                      DateFormat('dd MMM').format(_selectedDay),
+                                      style: TextStyle(fontSize: 14),
+                                    ),
+                                    Text(
+                                      DateFormat('EEEE').format(_selectedDay),
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ],
                                 ),
                               ],
+                            ),
+          
+                            SizedBox(width: 10),
+          
+                            Container(
+                              width: 1,
+                              height: 80,
+                              color: Colors.black54,
+                            ),
+          
+                            SizedBox(width: 10),
+          
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      selectedDayData.description,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
-
-                        SizedBox(width: 10),
-
-                        Container(
-                          width: 1,
-                          height: 80,
-                          color: Colors.black54,
+                      )
+                    : Center(
+                        child: Text(
+                          'No events for this day',
+                          style: TextStyle(fontSize: 16),
                         ),
-
-                        SizedBox(width: 10),
-
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  selectedDayData.description,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : Center(
-                    child: Text(
-                      'No events for this day',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+                      ),
+              ),
+            ],
           ),
+          Positioned(
+            top: 60,
+            right: 10,
+            child: IconButton(
+              icon: Icon(Icons.calendar_month_outlined),
+              color: Colors.grey,
+              tooltip: 'Week View',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => JournalPage()),);
+              },
+            ),
+          )
         ],
       ),
     );
