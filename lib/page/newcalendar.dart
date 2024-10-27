@@ -187,7 +187,7 @@ class _NewcalendarState extends State<Newcalendar> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => JournalPage()),);
+                  MaterialPageRoute(builder: (context) => const JournalPage()),);
               },
             ),
           )
