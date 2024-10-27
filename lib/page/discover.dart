@@ -38,12 +38,10 @@ class Discover extends StatelessWidget {
               child: Text("Discover", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
             ),
             const SizedBox(height: 9),
-            IconButton(
-              icon: Image.network("https://static.vecteezy.com/system/resources/thumbnails/005/720/479/small/banner-abstract-background-board-for-text-and-message-design-modern-free-vector.jpg"),
-              padding: EdgeInsets.zero,
-              onPressed: () {
-                // open search bar
-              }, 
+            GestureDetector(
+              child: const Image(
+                image: NetworkImage("https://static.vecteezy.com/system/resources/thumbnails/005/720/479/small/banner-abstract-background-board-for-text-and-message-design-modern-free-vector.jpg")
+              )
             ),
             const SizedBox(height: 18),
             const Padding(

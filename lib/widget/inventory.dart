@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Inventory extends StatefulWidget {
-  const Inventory({super.key});
+
+  const Inventory({super.key, required this.tabIndex});
+  final int tabIndex;
 
   @override
   State<Inventory> createState() => _InventoryState();
@@ -11,6 +13,34 @@ class _InventoryState extends State<Inventory> {
 
   @override
   Widget build(BuildContext context) {
+
+    List<String> name0 = ["One", "Two", "Three", "Four", "Five", "Six"];
+    List<String> image0 = [
+      "assets/images/Picture1.png", 
+      "assets/images/Picture2.png", 
+      "assets/images/Picture3.png", 
+      "assets/images/Picture4.png",
+      "assets/images/Picture5.png",
+      "assets/images/Picture6.png"];
+
+    List<String> name1 = ["Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+    List<String> image1 = [
+      "assets/images/Picture1.png", 
+      "assets/images/Picture2.png", 
+      "assets/images/Picture3.png", 
+      "assets/images/Picture4.png",
+      "assets/images/Picture5.png",
+      "assets/images/Picture6.png"];
+
+    List<String> name2 = ["Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen"];
+    List<String> image2 = [
+      "assets/images/Picture1.png", 
+      "assets/images/Picture2.png", 
+      "assets/images/Picture3.png", 
+      "assets/images/Picture4.png",
+      "assets/images/Picture5.png",
+      "assets/images/Picture6.png"];
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -18,39 +48,25 @@ class _InventoryState extends State<Inventory> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: GridView(
+          child: GridView.builder(
             padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemCount: 6,
+            physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               childAspectRatio: 1,
             ),
-            physics: const NeverScrollableScrollPhysics(),
-            children: const [
-              ItemTile(
-                imagePath: 'assets/images/Picture1.png',
-                itemName: 'Food',
-              ),
-              ItemTile(
-                imagePath: 'assets/images/Picture2.png',
-                itemName: 'Wood',
-              ),
-              ItemTile(
-                imagePath: 'assets/images/Picture3.png',
-                itemName: 'Stone',
-              ),
-              ItemTile(
-                imagePath: 'assets/images/Picture4.png',
-                itemName: 'Food',
-              ),
-              ItemTile(
-                imagePath: 'assets/images/Picture5.png',
-                itemName: 'Wood',
-              ),
-              ItemTile(
-                imagePath: 'assets/images/Picture6.png',
-                itemName: 'Stone',
-              ),
-            ],
+            itemBuilder: (context, index) {
+              switch(widget.tabIndex) {
+                case 0:
+                  return ItemTile(imagePath: image0[index], itemName: name0[index]);
+                case 1:
+                  return ItemTile(imagePath: image1[index], itemName: name1[index]);
+                case 2:
+                  return ItemTile(imagePath: image2[index], itemName: name2[index]);
+              }               
+            },
           ),
         ),
       )
@@ -84,8 +100,8 @@ class ItemTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              imagePath,
-              height: 64),
+            imagePath,
+            height: 64),
             Text(itemName)
           ],
         ),

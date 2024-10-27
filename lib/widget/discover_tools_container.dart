@@ -27,8 +27,8 @@ class ToolsContainer extends StatelessWidget {
         height: MediaQuery.of(context).size.width*0.9*25/97,
         width: MediaQuery.of(context).size.width*0.9,
         alignment: Alignment.center,
-        margin: EdgeInsets.only(
-          top: index == 0 ? 0 : 15,
+        margin: const EdgeInsets.only(
+          bottom: 15
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),

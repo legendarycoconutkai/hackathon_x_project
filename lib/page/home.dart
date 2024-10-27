@@ -1,9 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:hackathon_x_project/widget/inventory.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:hackathon_x_project/backend/message.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,18 +14,23 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with TickerProviderStateMixin {
+class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin<Home> {
+
+  int acceptedData = 0;
 
   final TextEditingController _controller = TextEditingController();
-  final List<Message> _messages = [
-  ];
+  final List<Message> _messages = [];
+
   bool _isLoading = false;
+  bool _isOpen = false;
 
   callGeminiModel() async{
     try{
       if(_controller.text.isNotEmpty){
         _messages.add(Message(text: _controller.text, isUser: true));
-        _isLoading = true;
+        setState(() {
+          _isLoading = false;
+        });
       }
 
       final model = GenerativeModel(model: 'gemini-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
@@ -33,7 +40,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
       setState(() {
         _messages.add(Message(text: response.text!, isUser: false));
-        _isLoading = false;
+        setState(() {
+          _isLoading = false;
+        });
       });
 
       _controller.clear();
@@ -44,101 +53,62 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   @override
+  void initState() {
+    super.initState();
+    KeyboardVisibilityController().onChange.listen((bool visible) {
+      setState(() {
+        _isOpen = visible ? true : false;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    super.build(context); 
 
     TabController tabController = TabController(length: 3, vsync: this);
 
     return Scaffold(
-      body: 
-      SlidingUpPanel(
-        color: Colors.transparent,
-        minHeight: MediaQuery.of(context).size.height*0.03,
-        maxHeight: MediaQuery.of(context).size.height*0.43,
-        panel: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white, // background color of panel
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0),), // rounded corners of panel
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const BarIndicator(),
-              Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                Stack(
+                  children: [ 
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height/2,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/empty_room3.jpg'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 300),
+                      child: Center(
+                        child: Image(
+                          image: AssetImage('assets/gif/dog1_bigger.gif'),
+                        ),
+                      ),
+                    ),
+                  ]
                 ),
-                child: TabBar(
-                  controller: tabController,
-                  labelColor: Colors.black,
-                  unselectedLabelColor: Colors.grey,
-                  labelStyle: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  indicatorColor: Colors.black,
-                  dividerColor: Colors.transparent,
-                  tabs: const [
-                    Tab(text: 'Furnitures'),
-                    Tab(text: 'Toys'),
-                    Tab(text: 'Treats'),
-                  ],
-                ),
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                ),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height*0.43 - 71,
-                child: TabBarView(
-                  controller: tabController,
-                  children: const [
-                    Inventory(),
-                    Inventory(),
-                    Inventory(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        collapsed: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0),),
-          ),
-          child: const Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BarIndicator(),
-            ],
-          ),
-        ),
-        body: Stack(
-          children: [Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height/2,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/empty_room3.jpg'),
-                    fit: BoxFit.fill,
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 1,
+                  decoration: const BoxDecoration(
+                    color: Colors.grey,
                   ),
                 ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 1,
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - MediaQuery.of(context).size.height/2 - 60 - MediaQuery.of(context).size.height*0.03,
-                child: 
-                  Column(
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height - MediaQuery.of(context).size.height/2 - 60 - MediaQuery.of(context).size.height*0.03,
+                  child: Column(
                     children: [
                       Expanded(
                         child: Padding(
@@ -229,25 +199,84 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
                     ],
                   ),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom:150.0),
-            child: Center(
-              child: Image(
-                image: AssetImage('assets/gif/dog1_bigger.gif'),
+          _isOpen == true ? const Divider() :
+          SlidingUpPanel(
+            minHeight: MediaQuery.of(context).size.height*0.03,
+            maxHeight: MediaQuery.of(context).size.height*0.43,
+            panel: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white, // background color of panel
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0),), // rounded corners of panel
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const BarIndicator(),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: TabBar(
+                      controller: tabController,
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.grey,
+                      labelStyle: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      indicatorColor: Colors.black,
+                      dividerColor: Colors.transparent,
+                      tabs: const [
+                        Tab(text: 'Furnitures'),
+                        Tab(text: 'Toys'),
+                        Tab(text: 'Treats'),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height*0.43 - 71,
+                    child: TabBarView(
+                      controller: tabController,
+                      children: const [
+                        Inventory(tabIndex: 0),
+                        Inventory(tabIndex: 1),
+                        Inventory(tabIndex: 2),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            collapsed: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0),),
+              ),
+              child: const Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BarIndicator(),
+                ],
               ),
             ),
           )
-          ]
-        )
-      ),
+        ],
+      ) 
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class BarIndicator extends StatelessWidget {

@@ -39,14 +39,8 @@ class Shop extends StatelessWidget {
               child: Text("Shop", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
             ),
             const SizedBox(height: 9),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage("https://static.vecteezy.com/system/resources/thumbnails/005/720/479/small/banner-abstract-background-board-for-text-and-message-design-modern-free-vector.jpg"),
-                  fit: BoxFit.cover
-                )
-              ),
+            GestureDetector(
+              child: const Image(image: NetworkImage("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS2iQ9VR5X59kKxAYkGryGzsl-eXdDRstAZWoX2OJzpucba751eHNeGICtEwPDtsnu5Hf1Vl2iOJoijoxK4h9kLrotIY1HS7QL32gNrwpCC14RkFAzHnlxJRzbjwlzfmoPQQDarBioYPHxmYmEZOy4avuAoJMiYdjp3TgpA-zuimaSWnYijUrv9kJHCRc/s851/Dungeon%20Meshi%20Banner.JPG"))
             ),
             const SizedBox(height: 18),
             const Padding(
@@ -90,7 +84,8 @@ class Shop extends StatelessWidget {
                   },
                 ),
               ),
-            )
+            ),
+            const SizedBox(height: 15),
           ],
         ),
       ),

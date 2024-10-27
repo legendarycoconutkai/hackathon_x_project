@@ -29,26 +29,27 @@ class _FrameState extends State<Frame> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[_page],
-      bottomNavigationBar: CurvedNavigationBar(
-        index: 0,
-        height: 60.0,
-        items: const <Widget>[
-          Icon(Icons.home, size: 30, color: Colors.white),
-          Icon(Icons.calendar_month, size: 30, color: Colors.white),
-          Icon(Icons.room, size: 30, color: Colors.white),
-          Icon(Icons.shop, size: 30, color: Colors.white),
-          Icon(Icons.search, size: 30, color: Colors.white),
-        ],
-        color: Colors.black,
-        buttonBackgroundColor: Colors.black,
-        backgroundColor: Colors.white,
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 450),
-        onTap: (index) {
-          setState(() {
-            _page = index;
-          });
-        },
+      bottomNavigationBar: NavigationBarTheme(
+        data: const NavigationBarThemeData(
+          labelTextStyle: WidgetStatePropertyAll(TextStyle(color: Colors.transparent, fontSize: 0)),
+          backgroundColor: Colors.white,
+        ),
+        child: NavigationBar(
+          height: 60,
+          destinations: [
+            NavigationDestination(icon: Image.asset('assets/gif/dog1.gif'), label: 'Home'),
+            const NavigationDestination(icon: Icon(Icons.calendar_today), label: 'Calendar'),
+            const NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+            const NavigationDestination(icon: Icon(Icons.person), label: 'Shop'),
+            const NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
+          ],
+          selectedIndex: _page,
+          onDestinationSelected: (int index) {
+            setState(() {
+                _page = index;
+            });
+          }
+        ),
       ),
     );
   }
