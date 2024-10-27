@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:hackathon_x_project/page/discover.dart';
 import 'package:hackathon_x_project/page/home.dart';
 import 'package:hackathon_x_project/page/newcalendar.dart';
 import 'package:hackathon_x_project/page/profile.dart';
@@ -21,6 +22,7 @@ class _FrameState extends State<Frame> {
     const Newcalendar(),
     const Profile(),
     const Shop(),
+    const Discover(),
   ];
 
   @override
@@ -35,6 +37,7 @@ class _FrameState extends State<Frame> {
           Icon(Icons.calendar_month, size: 30, color: Colors.white),
           Icon(Icons.room, size: 30, color: Colors.white),
           Icon(Icons.shop, size: 30, color: Colors.white),
+          Icon(Icons.search, size: 30, color: Colors.white),
         ],
         color: Colors.black,
         buttonBackgroundColor: Colors.black,

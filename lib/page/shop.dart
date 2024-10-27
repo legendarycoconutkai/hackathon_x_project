@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/widget/popular_shop_container.dart';
+import 'package:hackathon_x_project/widget/shop_event_container.dart';
 
 class Shop extends StatelessWidget {
 
@@ -33,15 +35,54 @@ class Shop extends StatelessWidget {
             ),
             const SizedBox(height: 9),
             const Padding(
-              padding: EdgeInsets.only(left: 9.0),
-              child: Text("Discover", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+              padding: EdgeInsets.symmetric(horizontal: 9.0),
+              child: Text("Shop", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+            ),
+            const SizedBox(height: 9),
+            Image.network("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS2iQ9VR5X59kKxAYkGryGzsl-eXdDRstAZWoX2OJzpucba751eHNeGICtEwPDtsnu5Hf1Vl2iOJoijoxK4h9kLrotIY1HS7QL32gNrwpCC14RkFAzHnlxJRzbjwlzfmoPQQDarBioYPHxmYmEZOy4avuAoJMiYdjp3TgpA-zuimaSWnYijUrv9kJHCRc/s851/Dungeon%20Meshi%20Banner.JPG"),
+            const SizedBox(height: 18),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 9.0),
+              child: Text("Event", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
             ),
             const SizedBox(height: 9),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 9.0),
-              child: Image.network("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS2iQ9VR5X59kKxAYkGryGzsl-eXdDRstAZWoX2OJzpucba751eHNeGICtEwPDtsnu5Hf1Vl2iOJoijoxK4h9kLrotIY1HS7QL32gNrwpCC14RkFAzHnlxJRzbjwlzfmoPQQDarBioYPHxmYmEZOy4avuAoJMiYdjp3TgpA-zuimaSWnYijUrv9kJHCRc/s851/Dungeon%20Meshi%20Banner.JPG"),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: SizedBox(
+                height: 165,
+                child: ListView.builder(
+                  itemCount: 5,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return EventContainer(index: index);
+                  },
+                ),
+              ),
             ),
-
+            const SizedBox(height: 9),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 9.0),
+              child: Text("Popular", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: SizedBox(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 4,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.7,
+                  ),
+                  itemBuilder: (context, index) {
+                    return PopularContainer(index: index);
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),
