@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class UserProfilePage extends StatelessWidget {
+  const UserProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,7 @@ class UserProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
                       
-            SizedBox(height: 120.0),
+            const SizedBox(height: 120.0),
 
             // Profile picture and username
             Center(
@@ -24,35 +26,35 @@ class UserProfilePage extends StatelessWidget {
                     radius: 50.0,
                     backgroundColor: Colors.grey[300],
                   ),
-                  SizedBox(height: 10.0),
-                  Text(
+                  const SizedBox(height: 10.0),
+                  const Text(
                     'User Name',
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 40.0),
+            const SizedBox(height: 40.0),
 
             // Menu items
             Row(
               children: [
-                SizedBox(width: 110.0),
+                const SizedBox(width: 110.0),
 
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildMenuItem(context, 'Statistics', Icons.bar_chart, StatisticsPage()),
 
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
 
                       _buildMenuItem(context, 'Photos', Icons.photo, PhotosPage()),
 
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
 
                       _buildMenuItem(context, 'Profile', Icons.person, ProfilePage()),
 
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       
                       _buildMenuItem(context, 'AI', Icons.smart_toy, AIPage()),
                     ],
@@ -62,14 +64,14 @@ class UserProfilePage extends StatelessWidget {
             
             
 
-            SizedBox(height: 100,),
+            const SizedBox(height: 100,),
 
             // Bottom items
             TextButton(
               onPressed: () {
                 // Log out action
               },
-              child: Text(
+              child: const Text(
                 'Log Out',
                 style: TextStyle(color: Colors.black),
               ),
@@ -78,7 +80,7 @@ class UserProfilePage extends StatelessWidget {
               onPressed: () {
                 // Settings action
               },
-              child: Text(
+              child: const Text(
                 'Settings',
                 style: TextStyle(color: Colors.black),
               ),
@@ -103,10 +105,10 @@ class UserProfilePage extends StatelessWidget {
         child: Row(
           children: [
             Icon(icon, color: Colors.black,),
-            SizedBox(width: 20.0),
+            const SizedBox(width: 20.0),
             Text(
               title,
-              style: TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 18.0),
             ),
           ],
         ),
@@ -117,11 +119,13 @@ class UserProfilePage extends StatelessWidget {
 
 // Statistics Page
 class StatisticsPage extends StatelessWidget {
+  const StatisticsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Statistics"),
+        title: const Text("Statistics"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
@@ -129,12 +133,12 @@ class StatisticsPage extends StatelessWidget {
         child:
           Column(
             children: [
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
           
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10), 
@@ -142,8 +146,8 @@ class StatisticsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Mood flow'),
-                    SizedBox(height: 10),
+                    const Text('Mood flow'),
+                    const SizedBox(height: 10),
                     Container(
                       width: 340,
                       height: 150,
@@ -157,9 +161,9 @@ class StatisticsPage extends StatelessWidget {
               ),
           
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10), 
@@ -167,14 +171,14 @@ class StatisticsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Best & Worst'),
-                    SizedBox(height: 10),
+                    const Text('Best & Worst'),
+                    const SizedBox(height: 10),
                     Text('What makes you feel good',
                       style: TextStyle(
                         fontSize: 12, 
                         fontStyle: FontStyle.italic,
                         color: Colors.green[500]),),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         Container(
@@ -184,7 +188,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: Column(
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -224,7 +228,7 @@ class StatisticsPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -232,7 +236,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: Column(
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -272,7 +276,7 @@ class StatisticsPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -280,7 +284,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: Column(
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -322,13 +326,13 @@ class StatisticsPage extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text('What makes you feel down',
                       style: TextStyle(
                         fontSize: 12, 
                         fontStyle: FontStyle.italic,
                         color: Colors.red[500]),),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         Container(
@@ -338,7 +342,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: Column(
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -378,7 +382,7 @@ class StatisticsPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -386,7 +390,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: Column(
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -426,7 +430,7 @@ class StatisticsPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -434,7 +438,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: Column(
+                          child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -482,9 +486,9 @@ class StatisticsPage extends StatelessWidget {
               ),
           
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10), 
@@ -493,26 +497,26 @@ class StatisticsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     
-                    Text('Favourite Tools'),
-                    SizedBox(height: 10,),
+                    const Text('Favourite Tools'),
+                    const SizedBox(height: 10,),
                     Container(
                       width: 340,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 5,),
-                          CircleAvatar(
+                          const SizedBox(width: 5,),
+                          const CircleAvatar(
                             radius: 20,
                             backgroundColor: Colors.grey,
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
 
-                          Text('xxxx'),
+                          const Text('xxxx'),
                           
-                          SizedBox(width: 220,),
+                          const SizedBox(width: 220,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
                         ],
@@ -521,21 +525,21 @@ class StatisticsPage extends StatelessWidget {
                     Container(
                       width: 340,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 5,),
-                          CircleAvatar(
+                          const SizedBox(width: 5,),
+                          const CircleAvatar(
                             radius: 20,
                             backgroundColor: Colors.grey,
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
 
-                          Text('xxxx'),
+                          const Text('xxxx'),
                           
-                          SizedBox(width: 220,),
+                          const SizedBox(width: 220,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
                         ],
@@ -544,21 +548,21 @@ class StatisticsPage extends StatelessWidget {
                     Container(
                       width: 340,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 5,),
-                          CircleAvatar(
+                          const SizedBox(width: 5,),
+                          const CircleAvatar(
                             radius: 20,
                             backgroundColor: Colors.grey,
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
 
-                          Text('xxxx'),
+                          const Text('xxxx'),
                           
-                          SizedBox(width: 220,),
+                          const SizedBox(width: 220,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
                         ],
@@ -579,11 +583,13 @@ class StatisticsPage extends StatelessWidget {
 
 // Photos Page
 class PhotosPage extends StatelessWidget {
+  const PhotosPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Photos"),
+        title: const Text("Photos"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
@@ -592,8 +598,8 @@ class PhotosPage extends StatelessWidget {
         child : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
-            Text('    Oct 2024', 
+            const SizedBox(height: 20),
+            const Text('    Oct 2024', 
             style:TextStyle(fontSize: 16,fontStyle: FontStyle.italic, color: Colors.grey) ,),
             Row(
               children: [
@@ -610,20 +616,22 @@ class PhotosPage extends StatelessWidget {
 
 // Profile Page
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        title: const Text("Profile"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           width: 400,
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(10), 
@@ -631,7 +639,7 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Profile Picture'),
@@ -642,21 +650,21 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 width: 340,
                 height: 1,
                 color: Colors.grey[400],
               ),
-              SizedBox(height: 20),
-              Row(
+              const SizedBox(height: 20),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Username'),
                   Text('User Name')
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               Container(
                 width: 340,
@@ -664,16 +672,16 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[400],
               ),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Email'),
                   Text('Email'),
             ],
         ),
-             SizedBox(height: 20),
+             const SizedBox(height: 20),
 
              Container(
                 width: 340,
@@ -681,16 +689,16 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[400],
               ),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-             Row(
+             const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Phone Number'),
                   Text('Phone Number'),
             ],
         ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               Container(
                 width: 340,
@@ -698,9 +706,9 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[400],
               ),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Password'),
@@ -720,21 +728,23 @@ class ProfilePage extends StatelessWidget {
 
 // AI Page
 class AIPage extends StatelessWidget {
+  const AIPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("AI"),
+        title: const Text("AI"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
       body: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
               width: 400,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(10), 
@@ -745,35 +755,35 @@ class AIPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Name your AI  '),
+                      const Text('Name your AI  '),
                       Icon(Icons.edit, size: 12,color: Colors.grey[400],),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 30.0,
                     backgroundColor: Colors.white,
                   ),
 
-                  SizedBox(height: 10),
-                  Text('Language'),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 10),
+                  const Text('Language'),
+                  const SizedBox(height: 8),
                   Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
                   
 
-                  SizedBox(height: 10),
-                  Text('Tone'),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 10),
+                  const Text('Tone'),
+                  const SizedBox(height: 8),
                   Text('Caring & Lovely', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
 
-                  SizedBox(height: 10),
-                  Text('Description'),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 10),
+                  const Text('Description'),
+                  const SizedBox(height: 8),
                   Text(' a friend that feels casual, authentic, and relatable. Instead of rushing to give advice, it mirrors the frustration or feelings shared, showing understanding without being preachy. ', 
                   style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
                   Container(
                     width: 60,
@@ -786,7 +796,7 @@ class AIPage extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10), 
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text('default',
                       
                       style: TextStyle(color: Colors.black54),),
@@ -799,9 +809,9 @@ class AIPage extends StatelessWidget {
             ),
             
              Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
               width: 400,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(10), 
@@ -812,36 +822,36 @@ class AIPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Name your AI  '),
+                      const Text('Name your AI  '),
                       Icon(Icons.edit, size: 12,color: Colors.grey[400],),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 30.0,
                     backgroundColor: Colors.white,
                   ),
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                  Text('Language'),
+                  const Text('Language'),
 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
                   
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                  Text('Tone'),
+                  const Text('Tone'),
 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text('Caring & Lovely', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                  Text('Description'),
-                  SizedBox(height: 8),
+                  const Text('Description'),
+                  const SizedBox(height: 8),
                   Text('A wise friend who listens deeply and offers thoughtful insights, helping you find clarity and peace.', 
                   style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
 

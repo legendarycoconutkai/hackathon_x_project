@@ -65,7 +65,8 @@ class _InventoryState extends State<Inventory> {
                   return ItemTile(imagePath: image1[index], itemName: name1[index]);
                 case 2:
                   return ItemTile(imagePath: image2[index], itemName: name2[index]);
-              }               
+              }
+              return null;               
             },
           ),
         ),

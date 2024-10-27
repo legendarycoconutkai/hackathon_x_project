@@ -5,6 +5,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
 class JournalPage extends StatefulWidget {
+  const JournalPage({super.key});
+
   @override
   _JournalPageState createState() => _JournalPageState();
 }
@@ -58,7 +60,7 @@ class _JournalPageState extends State<JournalPage> {
         children: [
           Column(
             children: [
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
           
               // Calendar Widget
               TableCalendar(
@@ -73,7 +75,7 @@ class _JournalPageState extends State<JournalPage> {
                 selectedDayPredicate: (day) => isSameDay(_selectedDate, day),
                 onDaySelected: _onDaySelected,
                 calendarFormat: CalendarFormat.week,
-                calendarStyle: CalendarStyle(
+                calendarStyle: const CalendarStyle(
                   outsideDaysVisible: false,
                 ),
                 calendarBuilders: CalendarBuilders(
@@ -107,17 +109,17 @@ class _JournalPageState extends State<JournalPage> {
                 
               ),
           
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
           
               // Date and details
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(width: 40),
+                  const SizedBox(width: 40),
                   Container(
                     width: 70,
                     height: 70,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.blueGrey,
                     ),
@@ -130,36 +132,36 @@ class _JournalPageState extends State<JournalPage> {
                           )
                         : null,
                   ),
-                  SizedBox(width: 80),
+                  const SizedBox(width: 80),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         DateFormat('dd MMM yyyy').format(_selectedDate),
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         DateFormat('EEEE').format(_selectedDate),
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         _getSelectedDayData(_selectedDate)?.title ?? '',
-                        style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                        style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
                       ),
                     ],
                   ),
                 ],
               ),
           
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
           
               if (_selectedEvents.isNotEmpty)
                 Column(
                   children: _selectedEvents.map((eventDetail) {
                     return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -167,17 +169,17 @@ class _JournalPageState extends State<JournalPage> {
                             width: 60,
                             child: Text(
                               eventDetail.time,
-                              style: TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.right,
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Container(
                             width: 1,
                             height: 150,
                             color: Colors.black54,
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           // Event details for the selected day
                           Expanded(
                             child: Column(
@@ -185,9 +187,9 @@ class _JournalPageState extends State<JournalPage> {
                               children: [
                                 Text(
                                   eventDetail.description,
-                                  style: TextStyle(fontSize: 14),
+                                  style: const TextStyle(fontSize: 14),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 if (eventDetail.image != null)
                                   Container(
                                     width: 60,
@@ -218,13 +220,13 @@ class _JournalPageState extends State<JournalPage> {
             top: 60,
             right: 10,
             child: IconButton(
-              icon: Icon(Icons.calendar_month_outlined),
+              icon: const Icon(Icons.calendar_month_outlined),
               color: Colors.grey,
               tooltip: 'Month View',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context)=>Newcalendar()));
+                  MaterialPageRoute(builder: (context)=>const Newcalendar()));
               },
             ),
           )

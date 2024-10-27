@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -24,6 +23,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
   bool _isLoading = false;
   bool _isOpen = false;
 
+  late final GenerativeModel _model;
+  late final GenerativeModel _visionModel;
+  late final ChatSession _chat;
+
   callGeminiModel() async{
     try{
       if(_controller.text.isNotEmpty){
@@ -33,10 +36,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
         });
       }
 
-      final model = GenerativeModel(model: 'gemini-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
       final prompt = _controller.text.trim();
-      final content = [Content.text(prompt)];
-      final response = await model.generateContent(content);
+      final content = Content.text(prompt);
+      final response = await _chat.sendMessage(content);
 
       setState(() {
         _messages.add(Message(text: response.text!, isUser: false));
@@ -54,12 +56,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
 
   @override
   void initState() {
-    super.initState();
+
+    _model = GenerativeModel(model: 'gemini-1.5-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
+    _visionModel = GenerativeModel(model: 'gemini-1.5-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
+    _chat = _model.startChat();
+    
     KeyboardVisibilityController().onChange.listen((bool visible) {
       setState(() {
         _isOpen = visible ? true : false;
       });
     });
+    super.initState();
   }
 
   @override
@@ -180,6 +187,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                                 ),
                               ),
                               const SizedBox(width: 8,),
+                              IconButton(
+                                  icon: const Icon(Icons.camera_alt),
+                                  onPressed: callGeminiModel,
+                              ),
+                              IconButton(
+                                  icon: const Icon(Icons.insert_drive_file),
+                                  onPressed: callGeminiModel,
+                              ),
                               _isLoading ?
                               const Padding(
                                 padding: EdgeInsets.only(right: 15.0),

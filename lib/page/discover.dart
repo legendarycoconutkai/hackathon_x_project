@@ -40,7 +40,7 @@ class Discover extends StatelessWidget {
             const SizedBox(height: 9),
             GestureDetector(
               child: const Image(
-                image: NetworkImage("https://static.vecteezy.com/system/resources/thumbnails/005/720/479/small/banner-abstract-background-board-for-text-and-message-design-modern-free-vector.jpg")
+                image: AssetImage("assets/images/discover_banner.png"),
               )
             ),
             const SizedBox(height: 18),

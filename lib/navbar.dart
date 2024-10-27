@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:hackathon_x_project/page/discover.dart';
 import 'package:hackathon_x_project/page/home.dart';
 import 'package:hackathon_x_project/page/newcalendar.dart';

@@ -38,7 +38,7 @@ class _NewcalendarState extends State<Newcalendar> {
         children: [
           Column(
             children: [
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
           
               TableCalendar(
                 headerStyle: const HeaderStyle(
@@ -55,7 +55,7 @@ class _NewcalendarState extends State<Newcalendar> {
                 focusedDay: _selectedDay,
                 firstDay: DateTime.utc(2010, 10, 16),
                 lastDay: DateTime.utc(2030, 3, 14),
-                calendarStyle: CalendarStyle(
+                calendarStyle: const CalendarStyle(
                   outsideDaysVisible: false,
                 ),
                 calendarBuilders: CalendarBuilders(
@@ -88,14 +88,14 @@ class _NewcalendarState extends State<Newcalendar> {
                 ),
               ),
           
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
           
               Align(
                 alignment: Alignment.topCenter,
                 child: selectedDayData != null && selectedDayData.description.isNotEmpty
                     ? Container(
-                        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        padding: EdgeInsets.all(20),
+                        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.circular(10),
@@ -108,7 +108,7 @@ class _NewcalendarState extends State<Newcalendar> {
                                 Container(
                                   width: 70,
                                   height: 70,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.white,
                                   ),
@@ -128,18 +128,18 @@ class _NewcalendarState extends State<Newcalendar> {
                                   children: [
                                     Text(
                                       DateFormat('dd MMM').format(_selectedDay),
-                                      style: TextStyle(fontSize: 14),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
                                     Text(
                                       DateFormat('EEEE').format(_selectedDay),
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
                               ],
                             ),
           
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
           
                             Container(
                               width: 1,
@@ -147,7 +147,7 @@ class _NewcalendarState extends State<Newcalendar> {
                               color: Colors.black54,
                             ),
           
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
           
                             Expanded(
                               child: SingleChildScrollView(
@@ -156,7 +156,7 @@ class _NewcalendarState extends State<Newcalendar> {
                                   children: [
                                     Text(
                                       selectedDayData.description,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.black,
                                       ),
@@ -168,7 +168,7 @@ class _NewcalendarState extends State<Newcalendar> {
                           ],
                         ),
                       )
-                    : Center(
+                    : const Center(
                         child: Text(
                           'No events for this day',
                           style: TextStyle(fontSize: 16),
@@ -181,7 +181,7 @@ class _NewcalendarState extends State<Newcalendar> {
             top: 60,
             right: 10,
             child: IconButton(
-              icon: Icon(Icons.calendar_month_outlined),
+              icon: const Icon(Icons.calendar_month_outlined),
               color: Colors.grey,
               tooltip: 'Week View',
               onPressed: () {

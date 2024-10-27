@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:get/get.dart'; 
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -12,7 +11,9 @@ class Profile extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          onPressed: () => Get.back(),
+          onPressed: () {
+              
+          },
           icon: const Icon(LineAwesomeIcons.angle_left_solid, color: Colors.black),
         ),
         title: const Text(
