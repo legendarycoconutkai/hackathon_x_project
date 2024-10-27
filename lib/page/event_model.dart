@@ -22,6 +22,7 @@ class EventDetail {
 final List<EventDetail> sharedEvents = [
   EventDetail(
     date: DateTime(2024, 10, 23),
+    title: '',
     time: '10:00 AM',
     description: 'happy day hapi',
     emoji: 'assets/images/hapi.jpg',
