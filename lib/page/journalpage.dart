@@ -35,6 +35,7 @@ class _JournalPageState extends State<JournalPage> {
       (e) => isSameDay(e.date, day),
       orElse: () => EventDetail(
         date: day,
+        title: '',
         time: '',
         description: '',
         emoji: null,
@@ -144,7 +145,7 @@ class _JournalPageState extends State<JournalPage> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'XXXX', // Customize this or fetch dynamically
+                        _getSelectedDayData(_selectedDate)?.title ?? '',
                         style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
                       ),
                     ],
