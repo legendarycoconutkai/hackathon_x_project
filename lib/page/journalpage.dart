@@ -121,7 +121,7 @@ class _JournalPageState extends State<JournalPage> {
                     height: 70,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blueGrey,
+                      color: Colors.transparent,
                     ),
                     child: selectedImage != null
                         ? ClipOval(
