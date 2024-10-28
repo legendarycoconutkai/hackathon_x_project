@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_x_project/backend/event_model.dart';
-import 'package:hackathon_x_project/page/newcalendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 

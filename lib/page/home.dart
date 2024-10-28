@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:hackathon_x_project/backend/message.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:provider/provider.dart';
+import 'package:hackathon_x_project/backend/message_provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,12 +21,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin<Home> {
 
-  int acceptedData = 0;
-
   final TextEditingController _controller = TextEditingController();
-  final List<Message> _messages = [];
-  XFile? image;
   final ScrollController _scrollController = ScrollController();
+  XFile? image;
 
   bool _isLoading = false;
   bool _isOpen = false;
@@ -31,47 +31,47 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
   late final GenerativeModel _model;
   late final ChatSession _chat;
 
-  callGeminiModel() async{
-    try{
+  callGeminiModel() async {
+    try {
+      log("callGeminiModel was run");
       if (image == null) {
-        if(_controller.text.isNotEmpty){
-          _messages.add(Message(text: _controller.text, isUser: true));
+        if (_controller.text.isNotEmpty) {
+          _addMessage(Message(text: _controller.text, isUser: true));
           setState(() {
             _isLoading = false;
           });
         }
-        
+
         final prompt = _controller.text.trim();
         final content = Content.text(prompt);
         final response = await _chat.sendMessage(content);
-        
+
         setState(() {
-          _messages.add(Message(text: response.text!, isUser: false)); 
+          _addMessage(Message(text: response.text!, isUser: false));
           setState(() {
             _isLoading = false;
           });
         });
-      }
-      else {
-        if(_controller.text.isNotEmpty){
-          _messages.add(Message(text: _controller.text, isUser: true, image: image));
+      } else {
+        if (_controller.text.isNotEmpty) {
+          _addMessage(Message(text: _controller.text, isUser: true, image: image));
           setState(() {
             _isLoading = false;
           });
         }
-        
+
         final prompt = _controller.text.trim();
         final imagePart = await image!.readAsBytes();
         final mimetype = image?.mimeType ?? 'image/jpeg';
         final response = await _model.generateContent([
           Content.multi([TextPart(prompt), DataPart(mimetype, imagePart)])
         ]);
-        
+
         setState(() {
-          _messages.add(Message(text: response.text!, isUser: false));
+          _addMessage(Message(text: response.text!, isUser: false));
           setState(() {
             _isLoading = false;
-          });          
+          });
         });
       }
 
@@ -80,42 +80,44 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
         image = null;
       });
       _scrollToBottom();
-    }
-    catch(e){
+    } catch (e) {
       print("Error : $e");
     }
   }
 
+  void _addMessage(Message message) {
+    Provider.of<MessageProvider>(context, listen: false).addMessage(message);
+  }
+
   void _scrollToBottom() {
-    if (_scrollController.hasClients) {
-      _scrollController.jumpTo(
-        _scrollController.position.maxScrollExtent,
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
   }
 
   @override
   void initState() {
-
     _model = GenerativeModel(model: 'gemini-1.5-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
     _chat = _model.startChat();
-    
+
     KeyboardVisibilityController().onChange.listen((bool visible) {
       setState(() {
         _isOpen = visible ? true : false;
       });
     });
 
-    _scrollController.addListener(_scrollToBottom);
-
     super.initState();
   }
 
   @override
   void dispose() {
-    _scrollController.removeListener(_scrollToBottom);
     _scrollController.dispose();
-
     super.dispose();
   }
 
@@ -123,6 +125,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
   Widget build(BuildContext context) {
 
     super.build(context); 
+
+    final messages = Provider.of<MessageProvider>(context).messages;
 
     TabController tabController = TabController(length: 3, vsync: this);
 
@@ -172,9 +176,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                           padding: const EdgeInsets.only(top: 10.0),
                             child: ListView.builder(
                               controller: _scrollController,
-                              itemCount: _messages.length,
+                              itemCount: messages.length,
                               itemBuilder: (context, index) {
-                              final message = _messages[index];
+                              final message = messages[index];
                               return ListTile(
                                 title: Align(
                                 alignment: message.isUser ? Alignment.centerRight : Alignment.centerLeft,
