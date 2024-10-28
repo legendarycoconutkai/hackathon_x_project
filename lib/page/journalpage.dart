@@ -96,7 +96,7 @@ class _JournalPageState extends State<JournalPage> {
                       child: Text(
                         day.day.toString(),
                         style: TextStyle(
-                          color: emojiPath != null ? Colors.grey[400] : Colors.black,
+                          color: emojiPath != null ? Colors.transparent : Colors.black,
                           fontWeight: emojiPath != null ? FontWeight.w700 : FontWeight.w400,
                         ),
                       ),
@@ -120,7 +120,7 @@ class _JournalPageState extends State<JournalPage> {
                     height: 70,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blueGrey,
+                      color: Colors.transparent,
                     ),
                     child: selectedImage != null
                         ? ClipOval(
