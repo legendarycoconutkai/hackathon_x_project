@@ -1,9 +1,8 @@
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 class UserProfilePage extends StatelessWidget {
-  const UserProfilePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +14,7 @@ class UserProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
                       
-            const SizedBox(height: 120.0),
+            SizedBox(height: 120.0),
 
             // Profile picture and username
             Center(
@@ -24,38 +23,39 @@ class UserProfilePage extends StatelessWidget {
                   CircleAvatar(
                     radius: 50.0,
                     backgroundColor: Colors.grey[300],
+                    backgroundImage: AssetImage('assets/images/yap.png'),
                   ),
-                  const SizedBox(height: 10.0),
-                  const Text(
-                    'User Name',
+                  SizedBox(height: 10.0),
+                  Text(
+                    'Yap',
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 40.0),
+            SizedBox(height: 40.0),
 
             // Menu items
             Row(
               children: [
-                const SizedBox(width: 110.0),
+                SizedBox(width: 110.0),
 
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildMenuItem(context, 'Statistics', Icons.bar_chart, const StatisticsPage()),
+                      _buildMenuItem(context, 'Statistics', Icons.bar_chart, StatisticsPage()),
 
-                      const SizedBox(height: 20,),
+                      SizedBox(height: 20,),
 
-                      _buildMenuItem(context, 'Photos', Icons.photo, const PhotosPage()),
+                      _buildMenuItem(context, 'Photos', Icons.photo, PhotosPage()),
 
-                      const SizedBox(height: 20,),
+                      SizedBox(height: 20,),
 
-                      _buildMenuItem(context, 'Profile', Icons.person, const ProfilePage()),
+                      _buildMenuItem(context, 'Profile', Icons.person, ProfilePage()),
 
-                      const SizedBox(height: 20,),
+                      SizedBox(height: 20,),
                       
-                      _buildMenuItem(context, 'AI', Icons.smart_toy, const AIPage()),
+                      _buildMenuItem(context, 'AI', Icons.smart_toy, AIPage()),
                     ],
                   ),
               ],
@@ -63,14 +63,14 @@ class UserProfilePage extends StatelessWidget {
             
             
 
-            const SizedBox(height: 100,),
+            SizedBox(height: 100,),
 
             // Bottom items
             TextButton(
               onPressed: () {
                 // Log out action
               },
-              child: const Text(
+              child: Text(
                 'Log Out',
                 style: TextStyle(color: Colors.black),
               ),
@@ -79,7 +79,7 @@ class UserProfilePage extends StatelessWidget {
               onPressed: () {
                 // Settings action
               },
-              child: const Text(
+              child: Text(
                 'Settings',
                 style: TextStyle(color: Colors.black),
               ),
@@ -104,10 +104,10 @@ class UserProfilePage extends StatelessWidget {
         child: Row(
           children: [
             Icon(icon, color: Colors.black,),
-            const SizedBox(width: 20.0),
+            SizedBox(width: 20.0),
             Text(
               title,
-              style: const TextStyle(fontSize: 18.0),
+              style: TextStyle(fontSize: 18.0),
             ),
           ],
         ),
@@ -118,13 +118,11 @@ class UserProfilePage extends StatelessWidget {
 
 // Statistics Page
 class StatisticsPage extends StatelessWidget {
-  const StatisticsPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Statistics"),
+        title: Text("Statistics"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
@@ -132,12 +130,12 @@ class StatisticsPage extends StatelessWidget {
         child:
           Column(
             children: [
-              const SizedBox(height: 20,),
+              SizedBox(height: 20,),
           
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10), 
@@ -145,8 +143,8 @@ class StatisticsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Mood flow'),
-                    const SizedBox(height: 10),
+                    Text('Mood flow', style: TextStyle(fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
                     Container(
                       width: 340,
                       height: 150,
@@ -160,9 +158,9 @@ class StatisticsPage extends StatelessWidget {
               ),
           
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10), 
@@ -170,14 +168,14 @@ class StatisticsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Best & Worst'),
-                    const SizedBox(height: 10),
+                    Text('Best & Worst', style: TextStyle(fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
                     Text('What makes you feel good',
                       style: TextStyle(
                         fontSize: 12, 
                         fontStyle: FontStyle.italic,
                         color: Colors.green[500]),),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Row(
                       children: [
                         Container(
@@ -187,7 +185,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -206,7 +204,9 @@ class StatisticsPage extends StatelessWidget {
                                   SizedBox(width: 32),
                                   CircleAvatar(
                                     radius: 20.0,
-                                    backgroundColor: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: AssetImage('assets/images/food.png'),
+
                                   ),
                                 ],
                               ),
@@ -214,20 +214,22 @@ class StatisticsPage extends StatelessWidget {
                               Row(
                                 children: [
                                   SizedBox(width: 27),
-                                  Text('Makan2'),
+                                  Text('Makan2',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                               SizedBox(height: 8),
                               Row(
                                 children: [
                                   SizedBox(width: 40),
-                                  Text('x12'),
+                                  Text('x12',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               )
                             ],
                           ),
                         ),
-                        const SizedBox(width: 15),
+                        SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -235,7 +237,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -254,7 +256,8 @@ class StatisticsPage extends StatelessWidget {
                                   SizedBox(width: 32),
                                   CircleAvatar(
                                     radius: 20.0,
-                                    backgroundColor: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: AssetImage('assets/images/drinks.png'),
                                   ),
                                 ],
                               ),
@@ -262,20 +265,22 @@ class StatisticsPage extends StatelessWidget {
                               Row(
                                 children: [
                                   SizedBox(width: 27),
-                                  Text('Milk tea'),
+                                  Text('Milk tea',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                               SizedBox(height: 8),
                               Row(
                                 children: [
                                   SizedBox(width: 43),
-                                  Text('x9'),
+                                  Text('x9',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               )
                             ],
                           ),
                         ),
-                        const SizedBox(width: 15),
+                        SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -283,7 +288,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -302,7 +307,8 @@ class StatisticsPage extends StatelessWidget {
                                   SizedBox(width: 32),
                                   CircleAvatar(
                                     radius: 20.0,
-                                    backgroundColor: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: AssetImage('assets/images/movie.png'),
                                   ),
                                 ],
                               ),
@@ -310,14 +316,16 @@ class StatisticsPage extends StatelessWidget {
                               Row(
                                 children: [
                                   SizedBox(width: 32),
-                                  Text('Movie'),
+                                  Text('Movie',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                               SizedBox(height: 8),
                               Row(
                                 children: [
                                   SizedBox(width: 45),
-                                  Text('x3'),
+                                  Text('x3',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               )
                             ],
@@ -325,13 +333,13 @@ class StatisticsPage extends StatelessWidget {
                         )
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
                     Text('What makes you feel down',
                       style: TextStyle(
                         fontSize: 12, 
                         fontStyle: FontStyle.italic,
                         color: Colors.red[500]),),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Row(
                       children: [
                         Container(
@@ -341,7 +349,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -360,7 +368,8 @@ class StatisticsPage extends StatelessWidget {
                                   SizedBox(width: 32),
                                   CircleAvatar(
                                     radius: 20.0,
-                                    backgroundColor: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: AssetImage('assets/images/study.png'),
                                   ),
                                 ],
                               ),
@@ -368,20 +377,22 @@ class StatisticsPage extends StatelessWidget {
                               Row(
                                 children: [
                                   SizedBox(width: 34),
-                                  Text('Study'),
+                                  Text('Study',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                               SizedBox(height: 8),
                               Row(
                                 children: [
                                   SizedBox(width: 40),
-                                  Text('x10'),
+                                  Text('x10',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               )
                             ],
                           ),
                         ),
-                        const SizedBox(width: 15),
+                        SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -389,7 +400,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -408,7 +419,8 @@ class StatisticsPage extends StatelessWidget {
                                   SizedBox(width: 32),
                                   CircleAvatar(
                                     radius: 20.0,
-                                    backgroundColor: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: AssetImage('assets/images/exampaper.png'),
                                   ),
                                 ],
                               ),
@@ -416,20 +428,22 @@ class StatisticsPage extends StatelessWidget {
                               Row(
                                 children: [
                                   SizedBox(width: 34),
-                                  Text('Exam'),
+                                  Text('Exam',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                               SizedBox(height: 8),
                               Row(
                                 children: [
                                   SizedBox(width: 43),
-                                  Text('x7'),
+                                  Text('x7',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               )
                             ],
                           ),
                         ),
-                        const SizedBox(width: 15),
+                        SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -437,7 +451,7 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 7),
@@ -456,7 +470,8 @@ class StatisticsPage extends StatelessWidget {
                                   SizedBox(width: 32),
                                   CircleAvatar(
                                     radius: 20.0,
-                                    backgroundColor: Colors.grey,
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: AssetImage('assets/images/research.png'),
                                   ),
                                 ],
                               ),
@@ -464,14 +479,16 @@ class StatisticsPage extends StatelessWidget {
                               Row(
                                 children: [
                                   SizedBox(width: 15),
-                                  Text('Assignment'),
+                                  Text('Assignment',
+                                  style: TextStyle(fontSize: 12),),
                                 ],
                               ),
                               SizedBox(height: 8),
                               Row(
                                 children: [
                                   SizedBox(width: 45),
-                                  Text('x4'),
+                                  Text('x4',
+                                  style: TextStyle(fontSize: 12)),
                                 ],
                               )
                             ],
@@ -485,9 +502,9 @@ class StatisticsPage extends StatelessWidget {
               ),
           
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10), 
@@ -496,26 +513,27 @@ class StatisticsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     
-                    const Text('Favourite Tools'),
-                    const SizedBox(height: 10,),
+                    Text('Favourite Tools', style: TextStyle(fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10,),
                     Container(
                       width: 340,
                       height: 50,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 5,),
-                          const CircleAvatar(
+                          SizedBox(width: 5,),
+                          CircleAvatar(
                             radius: 20,
                             backgroundColor: Colors.grey,
                           ),
-                          const SizedBox(width: 10,),
+                          SizedBox(width: 10,),
 
-                          const Text('xxxx'),
+                          Text('Music     '),
                           
-                          const SizedBox(width: 220,),
+                          SizedBox(width: 180,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
                         ],
@@ -524,21 +542,22 @@ class StatisticsPage extends StatelessWidget {
                     Container(
                       width: 340,
                       height: 50,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 5,),
-                          const CircleAvatar(
+                          SizedBox(width: 5,),
+                          CircleAvatar(
                             radius: 20,
                             backgroundColor: Colors.grey,
                           ),
-                          const SizedBox(width: 10,),
+                          SizedBox(width: 10,),
 
-                          const Text('xxxx'),
+                          Text('Meditate'),
                           
-                          const SizedBox(width: 220,),
+                          SizedBox(width: 180,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
                         ],
@@ -547,21 +566,22 @@ class StatisticsPage extends StatelessWidget {
                     Container(
                       width: 340,
                       height: 50,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 5,),
-                          const CircleAvatar(
+                          SizedBox(width: 5,),
+                          CircleAvatar(
                             radius: 20,
                             backgroundColor: Colors.grey,
                           ),
-                          const SizedBox(width: 10,),
+                          SizedBox(width: 10,),
 
-                          const Text('xxxx'),
+                          Text('Exercise '),
                           
-                          const SizedBox(width: 220,),
+                          SizedBox(width: 180,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
                         ],
@@ -582,13 +602,11 @@ class StatisticsPage extends StatelessWidget {
 
 // Photos Page
 class PhotosPage extends StatelessWidget {
-  const PhotosPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Photos"),
+        title: Text("Photos"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
@@ -597,14 +615,14 @@ class PhotosPage extends StatelessWidget {
         child : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-            const Text('    Oct 2024', 
+            SizedBox(height: 20),
+            Text('    Oct 2024', 
             style:TextStyle(fontSize: 16,fontStyle: FontStyle.italic, color: Colors.grey) ,),
             Row(
               children: [
-              Image.asset('assets/milktea.jpg', width: 100, height: 80,),
-              Image.asset('assets/sad.jpg', width: 100, height: 80,), 
-              Image.asset('assets/nostudy.jpeg', width: 100, height: 80,),] 
+              Image.asset('assets/images/milktea.jpg', width: 100, height: 80,),
+              Image.asset('assets/images/sad.jpg', width: 100, height: 80,), 
+              Image.asset('assets/images/nostudy.jpeg', width: 100, height: 80,),] 
             ),
           ],
         ),
@@ -615,22 +633,20 @@ class PhotosPage extends StatelessWidget {
 
 // Profile Page
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: Text("Profile"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: EdgeInsets.all(20),
           width: 400,
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(10), 
@@ -638,32 +654,33 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Profile Picture'),
                   CircleAvatar(
                     radius: 40.0,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage('assets/images/yap.png'),
                   )
                 ],
               ),
               
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Container(
                 width: 340,
                 height: 1,
                 color: Colors.grey[400],
               ),
-              const SizedBox(height: 20),
-              const Row(
+              SizedBox(height: 20),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Username'),
-                  Text('User Name')
+                  Text('Yap')
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               Container(
                 width: 340,
@@ -671,16 +688,16 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[400],
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Email'),
-                  Text('Email'),
+                  Text('yap123@gmail.com'),
             ],
         ),
-             const SizedBox(height: 20),
+             SizedBox(height: 20),
 
              Container(
                 width: 340,
@@ -688,16 +705,16 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[400],
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
-             const Row(
+             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Phone Number'),
-                  Text('Phone Number'),
+                  Text('012-3456789'),
             ],
         ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               Container(
                 width: 340,
@@ -705,9 +722,9 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey[400],
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Password'),
@@ -727,23 +744,21 @@ class ProfilePage extends StatelessWidget {
 
 // AI Page
 class AIPage extends StatelessWidget {
-  const AIPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("AI"),
+        title: Text("AI"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
       body: Column(
           children: [
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
               width: 400,
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(10), 
@@ -754,35 +769,36 @@ class AIPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text('Name your AI  '),
+                      Text('MALTESE  '),
                       Icon(Icons.edit, size: 12,color: Colors.grey[400],),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
 
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 30.0,
                     backgroundColor: Colors.white,
+                    backgroundImage: AssetImage('assets/images/maltese.png'),
                   ),
 
-                  const SizedBox(height: 10),
-                  const Text('Language'),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 10),
+                  Text('Language'),
+                  SizedBox(height: 8),
                   Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
                   
 
-                  const SizedBox(height: 10),
-                  const Text('Tone'),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 10),
+                  Text('Tone'),
+                  SizedBox(height: 8),
                   Text('Caring & Lovely', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
 
-                  const SizedBox(height: 10),
-                  const Text('Description'),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 10),
+                  Text('Description'),
+                  SizedBox(height: 8),
                   Text(' a friend that feels casual, authentic, and relatable. Instead of rushing to give advice, it mirrors the frustration or feelings shared, showing understanding without being preachy. ', 
                   style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
 
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
 
                   Container(
                     width: 60,
@@ -795,7 +811,7 @@ class AIPage extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10), 
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text('default',
                       
                       style: TextStyle(color: Colors.black54),),
@@ -808,9 +824,9 @@ class AIPage extends StatelessWidget {
             ),
             
              Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
               width: 400,
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(10), 
@@ -821,36 +837,37 @@ class AIPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text('Name your AI  '),
+                      Text('WOODY  '),
                       Icon(Icons.edit, size: 12,color: Colors.grey[400],),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
 
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 30.0,
                     backgroundColor: Colors.white,
+                    backgroundImage: AssetImage('assets/images/woody.png'),
                   ),
 
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
 
-                  const Text('Language'),
+                  Text('Language'),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
                   
 
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
 
-                  const Text('Tone'),
+                  Text('Tone'),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Text('Caring & Lovely', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
 
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
 
-                  const Text('Description'),
-                  const SizedBox(height: 8),
+                  Text('Description'),
+                  SizedBox(height: 8),
                   Text('A wise friend who listens deeply and offers thoughtful insights, helping you find clarity and peace.', 
                   style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
 

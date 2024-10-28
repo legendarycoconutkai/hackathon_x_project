@@ -24,7 +24,7 @@ final List<EventDetail> sharedEvents = [
     title: '',
     time: '10:00 AM',
     description: 'happy day hapi',
-    emoji: 'assets/images/hapi.jpg',
+    emoji: 'assets/images/goodmood.png',
     image: 'assets/images/milktea.jpg',
   ),
   EventDetail(
@@ -39,7 +39,7 @@ final List<EventDetail> sharedEvents = [
     title: 'Sad Day',
     time: '02:30 PM',
     description: 'susah sedih',
-    emoji: 'assets/images/sad.jpg',
+    emoji: 'assets/images/badmood.png',
     image: 'assets/images/exam.jpg',
   ),
   EventDetail(
@@ -47,7 +47,7 @@ final List<EventDetail> sharedEvents = [
     title: 'Study Day',
     time: '09:00 AM',
     description: 'i dontwan go study',
-    emoji: 'assets/images/bored.jpg',
+    emoji: 'assets/images/moderatemode.png',
     image: 'assets/images/nostudy.jpeg',
   ),
 ];
