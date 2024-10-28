@@ -14,7 +14,7 @@ class _InventoryState extends State<Inventory> {
   @override
   Widget build(BuildContext context) {
 
-    List<String> name0 = ["Mirror", "Wall Shelf", "Table", "Lamp", "Sofa", "Plant"];
+    List<String> name0 = ["Mirror", "Shelf", "Table", "Lamp", "Sofa", "Plant"];
     List<String> image0 = [
       "assets/images/mirror.png", 
       "assets/images/shelf.png", 

@@ -340,7 +340,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                       dividerColor: Colors.transparent,
                       tabs: const [
                         Tab(text: 'Furnitures'),
-                        Tab(text: 'Toys'),
+                        Tab(text: 'Designs'),
                         Tab(text: 'Treats'),
                       ],
                     ),
