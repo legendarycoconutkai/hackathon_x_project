@@ -78,7 +78,7 @@ class _NewcalendarState extends State<Newcalendar> {
                         day.day.toString(),
                         style: TextStyle(
                           fontSize: 16,
-                          color: emojiPath != null ? Colors.grey : Colors.black,
+                          color: emojiPath != null ? Colors.transparent : Colors.black,
                           fontWeight:
                               emojiPath != null ? FontWeight.w700 : FontWeight.w400,
                         ),

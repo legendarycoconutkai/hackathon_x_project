@@ -97,7 +97,7 @@ class _JournalPageState extends State<JournalPage> {
                       child: Text(
                         day.day.toString(),
                         style: TextStyle(
-                          color: emojiPath != null ? Colors.grey[400] : Colors.black,
+                          color: emojiPath != null ? Colors.transparent : Colors.black,
                           fontWeight: emojiPath != null ? FontWeight.w700 : FontWeight.w400,
                         ),
                       ),
