@@ -34,15 +34,20 @@ Future<void> analyzeMessagesAndCreateEvent(BuildContext context) async {
       title: analysisResult['title'] ?? 'Default Title',
       time: time,
       description: analysisResult['description'] ?? 'Default Description',
-      emoji: null,
+      emoji: analysisResult['mood'] ?? 'assets/images/moderatemode.png',
       imageFile: lastImage,
     );
 
     // Add the new EventDetail to the sharedEvents list
     sharedEvents.add(newEvent);
 
+    // Clear the messages list
+    messages.clear();
+
     // Log or set a flag to indicate that the method was run
     log("analyzeMessagesAndCreateEvent was run at $now");
+
+    
   } else {
     log("No messages to analyze.");
   }
@@ -52,6 +57,9 @@ Future<Map<String, String?>> callGoogleGemini(List<Message> messages) async {
 
   String titleText = '';
   String descriptionText = '';
+  String moodText = '';
+  int moodInt = 1;
+  String moodPath = '';
 
   final model = GenerativeModel(
     model: 'gemini-1.5-pro',
@@ -61,21 +69,48 @@ Future<Map<String, String?>> callGoogleGemini(List<Message> messages) async {
   try {
     final String userInput = Message.convertMessagesToString(messages);
 
-    final titlePrompt = 'You about to read a conversation between a human and an AI. The conversation as such:\n$userInput\n\n Tell me whether this is a what day. Example: Happy Day, Sad Day, Study Day, etc. Just give a definite answer. I do not want a response longer than three words.';
+    final titlePrompt = 'You about to read a conversation between a human and an AI. The conversation is as such:\n$userInput\n\n Tell me whether this is a what day. Example: Happy Day, Sad Day, Study Day, etc. Just give a definite answer. I do not want a response longer than three words.';
     final titleContent = [Content.text(titlePrompt)];
     final titleResponse = await model.generateContent(titleContent);
     titleText = titleResponse.text!;
 
-    final descriptionPrompt = 'You about to read a conversation between a human and an AI. The conversation as such:\n$userInput\n\n Write a summary of what has happened to the human. You are supposed to help the human to write his or her journal, so you should write it in first-person narration. Do not add in extra content on your own.';
+    final descriptionPrompt = 'You about to read a conversation between a human and an AI. The conversation is as such:\n$userInput\n\n Write a summary of what has happened to the human. You are supposed to help the human to write his or her journal, so you should write it in first-person narration. Do not add in extra content on your own.';
     final descriptionContent = [Content.text(descriptionPrompt)];
     final descriptionResponse = await model.generateContent(descriptionContent);
     descriptionText = descriptionResponse.text!;
+
+    final moodPrompt = 'You about to read a conversation between a human and an AI. The conversation is as such:\n$userInput\n\n What is the mood of the human? Good-2, moderate-1 or bad-0? Please reply only one integer (2/1/0).';
+    final moodContent = [Content.text(moodPrompt)];
+    final moodResponse = await model.generateContent(moodContent);
+    moodText = moodResponse.text!;
+    log('Mood: $moodText');
+    moodInt = int.parse(moodText);
+
+    if (moodInt == 2) {
+      moodPath = 'assets/images/goodmood.png';
+    } else if (moodInt == 1) {
+      moodPath = 'assets/images/moderatemode.png';
+    } else if (moodInt == 0) {
+      moodPath = 'assets/images/badmood.png';
+    }
+
+    log('Moodpath: $moodPath');
+
   } catch (e) {
-      print("Error : $e");
+      log("Error : $e");
   }
 
-  return {
-    'title': titleText,
-    'description': descriptionText
-  };
+  if (moodPath.isNotEmpty) {
+    return {
+      'title': titleText,
+      'description': descriptionText,
+      'mood': moodPath,
+    };
+  }
+  else {
+    return {
+      'title': titleText,
+      'description': descriptionText,
+    };
+  }
 }

@@ -35,7 +35,7 @@ final List<EventDetail> sharedEvents = [
     title: '',
     time: '2:00 PM',
     description: 'more happi',
-    image: 'assets/bored gif.png',
+    image: 'assets/images/bored gif.png',
   ),
   EventDetail(
     date: DateTime(2024, 10, 24),
@@ -52,14 +52,6 @@ final List<EventDetail> sharedEvents = [
     description: 'i dontwan go study',
     emoji: 'assets/images/moderatemode.png',
     image: 'assets/images/nostudy.jpeg',
-  ),
-  EventDetail(
-    date: DateTime(2024, 10, 29),
-    title: 'Study Day',
-    time: '09:00 AM',
-    description: 'testing',
-    emoji: null,
-    image: null,
   ),
 ];
 

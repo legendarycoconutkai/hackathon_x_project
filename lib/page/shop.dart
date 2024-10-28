@@ -36,7 +36,7 @@ class Shop extends StatelessWidget {
             const SizedBox(height: 9),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 9.0),
-              child: Text("Shop", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+              child: Text("Shop", style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
             ),
             const SizedBox(height: 9),
             GestureDetector(
@@ -45,7 +45,7 @@ class Shop extends StatelessWidget {
             const SizedBox(height: 18),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 9.0),
-              child: Text("Event", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+              child: Text("Event", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
             ),
             const SizedBox(height: 9),
             Padding(
@@ -61,11 +61,12 @@ class Shop extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 9),
+            const SizedBox(height: 18),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 9.0),
-              child: Text("Popular", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+              child: Text("Popular", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
             ),
+            const SizedBox(height: 9),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: SizedBox(
@@ -77,7 +78,7 @@ class Shop extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.8,
                   ),
                   itemBuilder: (context, index) {
                     return PopularContainer(index: index);

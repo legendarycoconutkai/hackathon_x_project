@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
@@ -22,7 +24,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 _currentPage = page;
               });
             },
-            children: [
+            children: const [
               OnboardingPage(
                 image: 'assets/images/privatespace.png',
                 title: 'Your Private Space',
@@ -55,7 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onPressed: () {
                   // Navigate to the main page of your app
                 },
-                child: Text("Get Started"),
+                child: const Text("Get Started"),
               ),
             ),
         ],
@@ -65,8 +67,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget buildDot(int index) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
-      margin: EdgeInsets.symmetric(horizontal: 4),
+      duration: const Duration(milliseconds: 300),
+      margin: const EdgeInsets.symmetric(horizontal: 4),
       height: 8,
       width: _currentPage == index ? 20 : 8,
       decoration: BoxDecoration(
@@ -82,7 +84,7 @@ class OnboardingPage extends StatelessWidget {
   final String title;
   final String description;
 
-  OnboardingPage({required this.image, required this.title, required this.description});
+  const OnboardingPage({super.key, required this.image, required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -90,14 +92,14 @@ class OnboardingPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(image, height: 300),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           title,
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Text(
             description,
             textAlign: TextAlign.center,

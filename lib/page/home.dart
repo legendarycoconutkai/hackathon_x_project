@@ -81,7 +81,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
       });
       _scrollToBottom();
     } catch (e) {
-      print("Error : $e");
+      log("Error : $e");
     }
   }
 
@@ -168,7 +168,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height - MediaQuery.of(context).size.height/2 - 60 - MediaQuery.of(context).size.height*0.03,
+                  height: MediaQuery.of(context).size.height*0.43 - MediaQuery.of(context).size.height*0.03,
                   child: Column(
                     children: [
                       Expanded(

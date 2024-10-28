@@ -14,32 +14,32 @@ class _InventoryState extends State<Inventory> {
   @override
   Widget build(BuildContext context) {
 
-    List<String> name0 = ["One", "Two", "Three", "Four", "Five", "Six"];
+    List<String> name0 = ["Mirror", "Wall Shelf", "Table", "Lamp", "Sofa", "Plant"];
     List<String> image0 = [
-      "assets/images/Picture1.png", 
-      "assets/images/Picture2.png", 
-      "assets/images/Picture3.png", 
-      "assets/images/Picture4.png",
-      "assets/images/Picture5.png",
-      "assets/images/Picture6.png"];
+      "assets/images/mirror.png", 
+      "assets/images/shelf.png", 
+      "assets/images/table.png", 
+      "assets/images/lamp.png",
+      "assets/images/sofa.png",
+      "assets/images/plant.png"];
 
-    List<String> name1 = ["Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+    List<String> name1 = ["Wall 1", "Wall 2", "Wall 3", "Floor 1", "Floor 2", "Floor 3"];
     List<String> image1 = [
-      "assets/images/Picture1.png", 
-      "assets/images/Picture2.png", 
-      "assets/images/Picture3.png", 
-      "assets/images/Picture4.png",
-      "assets/images/Picture5.png",
-      "assets/images/Picture6.png"];
+      "assets/images/wall1.png", 
+      "assets/images/wall2.png", 
+      "assets/images/wall3.png", 
+      "assets/images/floor1.png",
+      "assets/images/floor2.png",
+      "assets/images/floor3.png"];
 
-    List<String> name2 = ["Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen"];
+    List<String> name2 = ["Milktea", "Noodle", "Pocky", "Biscuit", "Pretzel", "Candy"];
     List<String> image2 = [
-      "assets/images/Picture1.png", 
-      "assets/images/Picture2.png", 
-      "assets/images/Picture3.png", 
-      "assets/images/Picture4.png",
-      "assets/images/Picture5.png",
-      "assets/images/Picture6.png"];
+      "assets/images/drinks.png", 
+      "assets/images/food.png", 
+      "assets/images/pocky.png", 
+      "assets/images/biscuit.png",
+      "assets/images/pretzel.png",
+      "assets/images/candy.png"];
 
     return Scaffold(
       body: Container(
