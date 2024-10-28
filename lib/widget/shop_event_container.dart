@@ -48,7 +48,7 @@ class EventContainer extends StatelessWidget{
                 padding: const EdgeInsets.symmetric(horizontal: 6),
                 child: const Center(
                   child: Text(
-                    "Toy Story", 
+                    "AI Voice", 
                     style: TextStyle(
                       color: Colors.black, fontSize:12, fontWeight: FontWeight.bold),),
                 ),

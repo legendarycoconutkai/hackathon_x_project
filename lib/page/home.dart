@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:hackathon_x_project/widget/inventory.dart';
 import 'package:hackathon_x_project/backend/message.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Home extends StatefulWidget {
@@ -19,38 +22,75 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
 
   final TextEditingController _controller = TextEditingController();
   final List<Message> _messages = [];
+  XFile? image;
+  final ScrollController _scrollController = ScrollController();
 
   bool _isLoading = false;
   bool _isOpen = false;
 
   late final GenerativeModel _model;
-  late final GenerativeModel _visionModel;
   late final ChatSession _chat;
 
   callGeminiModel() async{
     try{
-      if(_controller.text.isNotEmpty){
-        _messages.add(Message(text: _controller.text, isUser: true));
+      if (image == null) {
+        if(_controller.text.isNotEmpty){
+          _messages.add(Message(text: _controller.text, isUser: true));
+          setState(() {
+            _isLoading = false;
+          });
+        }
+        
+        final prompt = _controller.text.trim();
+        final content = Content.text(prompt);
+        final response = await _chat.sendMessage(content);
+        
         setState(() {
-          _isLoading = false;
+          _messages.add(Message(text: response.text!, isUser: false)); 
+          setState(() {
+            _isLoading = false;
+          });
+        });
+      }
+      else {
+        if(_controller.text.isNotEmpty){
+          _messages.add(Message(text: _controller.text, isUser: true, image: image));
+          setState(() {
+            _isLoading = false;
+          });
+        }
+        
+        final prompt = _controller.text.trim();
+        final imagePart = await image!.readAsBytes();
+        final mimetype = image?.mimeType ?? 'image/jpeg';
+        final response = await _model.generateContent([
+          Content.multi([TextPart(prompt), DataPart(mimetype, imagePart)])
+        ]);
+        
+        setState(() {
+          _messages.add(Message(text: response.text!, isUser: false));
+          setState(() {
+            _isLoading = false;
+          });          
         });
       }
 
-      final prompt = _controller.text.trim();
-      final content = Content.text(prompt);
-      final response = await _chat.sendMessage(content);
-
-      setState(() {
-        _messages.add(Message(text: response.text!, isUser: false));
-        setState(() {
-          _isLoading = false;
-        });
-      });
-
       _controller.clear();
+      setState(() {
+        image = null;
+      });
+      _scrollToBottom();
     }
     catch(e){
       print("Error : $e");
+    }
+  }
+
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.jumpTo(
+        _scrollController.position.maxScrollExtent,
+      );
     }
   }
 
@@ -58,7 +98,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
   void initState() {
 
     _model = GenerativeModel(model: 'gemini-1.5-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
-    _visionModel = GenerativeModel(model: 'gemini-1.5-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
     _chat = _model.startChat();
     
     KeyboardVisibilityController().onChange.listen((bool visible) {
@@ -66,7 +105,18 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
         _isOpen = visible ? true : false;
       });
     });
+
+    _scrollController.addListener(_scrollToBottom);
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollToBottom);
+    _scrollController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -120,41 +170,78 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10.0),
-                          child: ListView.builder(
+                            child: ListView.builder(
+                              controller: _scrollController,
                               itemCount: _messages.length,
                               itemBuilder: (context, index) {
-                                final message = _messages[index];
-                                return ListTile(
-                                  title: Align(
-                                    alignment: message.isUser ? Alignment.centerRight : Alignment.centerLeft,
-                                    child: Container(
-                                      padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          color: message.isUser ?
-                                          Colors.blue :
-                                          Colors.green,
-                                          borderRadius: message.isUser ?
-                                          const BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomRight: Radius.circular(20),
-                                            bottomLeft: Radius.circular(20)
-                                          ) :
-                                          const BorderRadius.only(
-                                              topRight: Radius.circular(20),
-                                              topLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20)
-                                          )
-                                        ),
-                                        child: Text(
-                                            message.text,
-                                        )
-                                    ),
+                              final message = _messages[index];
+                              return ListTile(
+                                title: Align(
+                                alignment: message.isUser ? Alignment.centerRight : Alignment.centerLeft,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                  color: message.isUser ? Colors.blue : Colors.green,
+                                  borderRadius: message.isUser
+                                    ? const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20))
+                                    : const BorderRadius.only(
+                                      topRight: Radius.circular(20),
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20)),
                                   ),
-                                );
+                                  child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (message.image != null)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Image.file(
+                                      File(message.image!.path),
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    Text(message.text),
+                                  ],
+                                  ),
+                                ),
+                                ),
+                              );
                               },
                             ),
                         ),
                       ),
+                      image != null
+                      ? Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(color: Colors.grey.withOpacity(0.5), width: 1)
+                                ),
+                                child: Image.file(File(image!.path), fit: BoxFit.contain,) 
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    image = null;
+                                  });
+                                }, 
+                                icon: const Icon(Icons.cancel, size: 30,),
+                              )
+                            ],
+                          ),
+                      ) : Container(),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 15,top: 10, left: 16.0, right: 16),
                         child: Container(
@@ -187,13 +274,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                                 ),
                               ),
                               const SizedBox(width: 8,),
-                              IconButton(
+                              /*IconButton(
                                   icon: const Icon(Icons.camera_alt),
                                   onPressed: callGeminiModel,
-                              ),
+                              ),*/
                               IconButton(
-                                  icon: const Icon(Icons.insert_drive_file),
-                                  onPressed: callGeminiModel,
+                                  icon: const Icon(Icons.image),
+                                  onPressed: imagePickerMethod,
                               ),
                               _isLoading ?
                               const Padding(
@@ -220,7 +307,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
               ],
             ),
           ),
-          _isOpen == true ? const Divider() :
+          _isOpen == true ? Container() :
           SlidingUpPanel(
             minHeight: MediaQuery.of(context).size.height*0.03,
             maxHeight: MediaQuery.of(context).size.height*0.43,
@@ -288,6 +375,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
         ],
       ) 
     );
+  }
+
+  Future<void> imagePickerMethod() async {
+    final picker = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (picker != null) {
+      setState(() {
+        image = picker;
+      });
+    }
   }
 
   @override

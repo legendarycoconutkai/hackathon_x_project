@@ -216,20 +216,6 @@ class _JournalPageState extends State<JournalPage> {
                 ),
             ],
           ),
-          Positioned(
-            top: 60,
-            right: 10,
-            child: IconButton(
-              icon: const Icon(Icons.calendar_month_outlined),
-              color: Colors.grey,
-              tooltip: 'Month View',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=>const Newcalendar()));
-              },
-            ),
-          )
         ],
       ),
     );

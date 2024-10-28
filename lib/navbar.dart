@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hackathon_x_project/page/discover.dart';
 import 'package:hackathon_x_project/page/home.dart';
 import 'package:hackathon_x_project/page/newcalendar.dart';
-import 'package:hackathon_x_project/page/profile.dart';
+import 'package:hackathon_x_project/page/userprofilepage.dart';
 import 'package:hackathon_x_project/page/shop.dart';
 
 class Frame extends StatefulWidget {
@@ -14,14 +14,14 @@ class Frame extends StatefulWidget {
 
 class _FrameState extends State<Frame> {
 
-  int _page = 0;
+  int _page = 2;
 
   final pages = [
-    const Home(),
     const Newcalendar(),
-    const Profile(),
-    const Shop(),
     const Discover(),
+    const Home(),
+    const Shop(),
+    const UserProfilePage(),
   ];
 
   @override
@@ -36,11 +36,14 @@ class _FrameState extends State<Frame> {
         child: NavigationBar(
           height: 60,
           destinations: [
-            NavigationDestination(icon: Image.asset('assets/gif/dog1.gif'), label: 'Home'),
-            const NavigationDestination(icon: Icon(Icons.calendar_today), label: 'Calendar'),
-            const NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
-            const NavigationDestination(icon: Icon(Icons.person), label: 'Shop'),
+            const NavigationDestination(icon: Icon(Icons.calendar_month_outlined), label: 'Calendar'),
             const NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
+            NavigationDestination(icon: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0, top: 3.0),
+              child: Image.asset('assets/gif/dog2.png'),
+            ), label: 'Home'),
+            const NavigationDestination(icon: Icon(Icons.shopping_bag_outlined), label: 'Shop'),
+            const NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profile'),
           ],
           selectedIndex: _page,
           onDestinationSelected: (int index) {

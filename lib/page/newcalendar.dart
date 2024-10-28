@@ -182,13 +182,17 @@ class _NewcalendarState extends State<Newcalendar> {
             right: 10,
             child: IconButton(
               icon: const Icon(Icons.calendar_month_outlined),
-              color: Colors.grey,
+              color: Colors.black,
               tooltip: 'Week View',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const JournalPage()),);
-              },
+                onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext context) {
+                  return const JournalPage();
+                  },
+                );
+                },
             ),
           )
         ],
