@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
 import 'package:hackathon_x_project/navbar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -41,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Image.asset('assets/gif/happydog.gif'),
                 TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -81,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple[300],
+                      backgroundColor: tertiary,
                       shape: const StadiumBorder(),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
@@ -101,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: LoginPage(),
   ));
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
 import 'package:hackathon_x_project/backend/event_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
@@ -56,6 +57,7 @@ class _JournalPageState extends State<JournalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: background,
       ),
       body: Stack(
         children: [

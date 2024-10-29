@@ -1,13 +1,27 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hackathon_x_project/backend/colour.dart';
+import 'package:hackathon_x_project/backend/user_info.dart';
 import 'package:hackathon_x_project/page/login.dart';
 import 'package:hackathon_x_project/widget/consult.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserProfilePage extends StatelessWidget {
-  const UserProfilePage({super.key});
+  
+  UserProfilePage({super.key});
+
+  final userInfo = UserInfo();
 
   @override
   Widget build(BuildContext context) {
+
+    final String? name = userInfo.getName();
+    final String? email = userInfo.getEmail();
+    final String? phoneNo = userInfo.getPhoneNo();
+    final String? password = userInfo.getPassword();
+    final XFile? image = userInfo.getImage();
+    
     return Scaffold(
       backgroundColor: background,
       body: Padding(
@@ -20,18 +34,18 @@ class UserProfilePage extends StatelessWidget {
             const SizedBox(height: 120.0),
 
             // Profile picture and username
-            const Center(
+            Center(
               child: Column(
                 children: [
                   CircleAvatar(
                     radius: 50.0,
                     backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('assets/images/emma.png'),
+                    backgroundImage: image != null ? FileImage(File(image!.path)) : null,
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   Text(
-                    'Emma',
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    name!,
+                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -46,23 +60,23 @@ class UserProfilePage extends StatelessWidget {
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildMenuItem(context, 'Statistics', Icons.bar_chart, StatisticsPage()),
+                      _buildMenuItem(context, 'Statistics', Icons.bar_chart, const StatisticsPage()),
 
                       const SizedBox(height: 15,),
 
-                      _buildMenuItem(context, 'Photos', Icons.photo, PhotosPage()),
+                      _buildMenuItem(context, 'Photos', Icons.photo, const PhotosPage()),
 
                       const SizedBox(height: 15,),
 
-                      _buildMenuItem(context, 'Profile', Icons.person, ProfilePage()),
+                      _buildMenuItem(context, 'Profile', Icons.person, ProfilePage(image: image, name: name, email: email, phoneNo: phoneNo, password: password)),
 
                       const SizedBox(height: 15,),
                       
-                      _buildMenuItem(context, 'AI', Icons.smart_toy, AIPage()),
+                      _buildMenuItem(context, 'AI', Icons.smart_toy, const AIPage()),
 
                       const SizedBox(height: 15,),
 
-                      _buildMenuItem(context, 'Talk To Someone', Icons.settings, TalkPage()),
+                      _buildMenuItem(context, 'Talk To Someone', Icons.settings, const TalkPage()),
                     ],
                   ),
               ],
@@ -663,8 +677,20 @@ class PhotosPage extends StatelessWidget {
 
 // Profile Page
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({
+    super.key, 
+    required this.image,
+    required this.name,
+    required this.email,
+    required this.phoneNo,
+    required this.password,
+  });
 
+  final XFile? image;
+  final String? name;
+  final String? email;
+  final String? phoneNo;
+  final String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -687,14 +713,14 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Profile Picture'),
+                  const Text('Profile Picture'),
                   CircleAvatar(
                     radius: 40.0,
                     backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage('assets/images/emma.png'),
+                    backgroundImage: image != null ? FileImage(File(image!.path)) : null,
                   )
                 ],
               ),
@@ -707,11 +733,11 @@ class ProfilePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Username'),
-                  Text('Emma')
+                  const Text('Username'),
+                  Text(name!),
                 ],
               ),
               const SizedBox(height: 20),
@@ -724,11 +750,11 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Email'),
-                  Text('emma123@gmail.com'),
+                  const Text('Email'),
+                  Text(email!),
             ],
         ),
              const SizedBox(height: 20),
@@ -741,11 +767,11 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-             const Row(
+             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Phone Number'),
-                  Text('012-3456789'),
+                  const Text('Phone Number'),
+                  Text(phoneNo!),
             ],
         ),
               const SizedBox(height: 20),
@@ -758,11 +784,11 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Password'),
-                  Text('********'),
+                  const Text('Password'),
+                    Text('*' * password!.length),
               ],
               
             ),
@@ -941,7 +967,7 @@ class TalkPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 const Text(
                   "Virtual Consultation",
                   style: TextStyle(
@@ -949,14 +975,14 @@ class TalkPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(width: 130),
+                const SizedBox(width: 130),
                 Text('See more', style: TextStyle(fontSize: 12, color: Colors.grey[400]),),
                 Icon(Icons.arrow_forward_rounded, color: Colors.grey[400], size: 16),
 
               ],
             ),
 
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
 
           Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),

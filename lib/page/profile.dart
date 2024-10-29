@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
 import 'package:hackathon_x_project/backend/user_info.dart';
 import 'package:hackathon_x_project/navbar.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,7 +24,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: background,
         elevation: 0,
         leading: IconButton(
           onPressed: () {
@@ -32,7 +33,7 @@ class _ProfileState extends State<Profile> {
           icon: const Icon(LineAwesomeIcons.angle_left_solid, color: Colors.black),
         ),
         title: const Text(
-          "Edit Profile",
+          "Account",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -68,7 +69,7 @@ class _ProfileState extends State<Profile> {
                         width: 35,
                         height: 35,
                         decoration: BoxDecoration(
-                          color: Colors.purple[300],
+                          color: quaternary,
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: const Icon(
@@ -96,20 +97,20 @@ class _ProfileState extends State<Profile> {
                     _buildTextField(
                       label: 'E-Mail',
                       icon: LineAwesomeIcons.envelope,
-                      onChanged: (value) => userInfo.name = value,
+                      onChanged: (value) => userInfo.email = value,
                     ),
                     const SizedBox(height: 16),
                     _buildTextField(
                       label: 'Phone No',
                       icon: LineAwesomeIcons.phone_solid,
-                      onChanged: (value) => userInfo.name = value,
+                      onChanged: (value) => userInfo.phoneNo = value,
                     ),
                     const SizedBox(height: 16),
                     _buildTextField(
                       label: 'Password',
                       icon: LineAwesomeIcons.fingerprint_solid,
                       obscureText: true,
-                      onChanged: (value) => userInfo.name = value,
+                      onChanged: (value) => userInfo.password = value,
                     ),
                     const SizedBox(height: 30),
 
@@ -124,7 +125,7 @@ class _ProfileState extends State<Profile> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.purple[300],
+                          backgroundColor: quaternary,
                           shape: const StadiumBorder(),
                           padding: const EdgeInsets.symmetric(vertical: 16),
                         ),
@@ -189,5 +190,6 @@ class _ProfileState extends State<Profile> {
         image = picker;
       });
     }
+    userInfo.image = image;
   }
 }
