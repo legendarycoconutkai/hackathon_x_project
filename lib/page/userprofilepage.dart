@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/widget/consult.dart';
 
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
@@ -9,85 +10,86 @@ class UserProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-                        
-              const SizedBox(height: 120.0),
-          
-              // Profile picture and username
-              Center(
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 50.0,
-                      backgroundColor: Colors.grey[300],
-                      backgroundImage: const AssetImage('assets/images/yap.png'),
-                    ),
-                    const SizedBox(height: 10.0),
-                    const Text(
-                      'Yap',
-                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 40.0),
-          
-              // Menu items
-              Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+                      
+            const SizedBox(height: 120.0),
+
+            // Profile picture and username
+            const Center(
+              child: Column(
                 children: [
-                  const SizedBox(width: 110.0),
-          
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildMenuItem(context, 'Statistics', Icons.bar_chart, const StatisticsPage()),
-          
-                        const SizedBox(height: 20,),
-          
-                        _buildMenuItem(context, 'Photos', Icons.photo, const PhotosPage()),
-          
-                        const SizedBox(height: 20,),
-          
-                        _buildMenuItem(context, 'Profile', Icons.person, const ProfilePage()),
-          
-                        const SizedBox(height: 20,),
-                        
-                        _buildMenuItem(context, 'AI', Icons.smart_toy, const AIPage()),
-                      ],
-                    ),
+                  CircleAvatar(
+                    radius: 50.0,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage('assets/images/emma.png'),
+                  ),
+                  SizedBox(height: 10.0),
+                  Text(
+                    'Emma',
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
-              
-              
-          
-              const SizedBox(height: 100,),
-          
-              // Bottom items
-              TextButton(
-                onPressed: () {
-                  // Log out action
-                },
-                child: const Text(
-                  'Log Out',
-                  style: TextStyle(color: Colors.black),
-                ),
+            ),
+            const SizedBox(height: 20.0),
+
+            // Menu items
+            Row(
+              children: [
+                const SizedBox(width: 105.0),
+
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildMenuItem(context, 'Statistics', Icons.bar_chart, StatisticsPage()),
+
+                      const SizedBox(height: 15,),
+
+                      _buildMenuItem(context, 'Photos', Icons.photo, PhotosPage()),
+
+                      const SizedBox(height: 15,),
+
+                      _buildMenuItem(context, 'Profile', Icons.person, ProfilePage()),
+
+                      const SizedBox(height: 15,),
+                      
+                      _buildMenuItem(context, 'AI', Icons.smart_toy, AIPage()),
+
+                      const SizedBox(height: 15,),
+
+                      _buildMenuItem(context, 'Talk To Someone', Icons.settings, TalkPage()),
+                    ],
+                  ),
+              ],
+            ),
+            
+            
+
+            const SizedBox(height: 30,),
+
+            // Bottom items
+            TextButton(
+              onPressed: () {
+                // Log out action
+              },
+              child: const Text(
+                'Log Out',
+                style: TextStyle(color: Colors.black),
               ),
-              TextButton(
-                onPressed: () {
-                  // Settings action
-                },
-                child: const Text(
-                  'Settings',
-                  style: TextStyle(color: Colors.black),
-                ),
+            ),
+            TextButton(
+              onPressed: () {
+                // Settings action
+              },
+              child: const Text(
+                'Settings',
+                style: TextStyle(color: Colors.black),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -107,10 +109,10 @@ class UserProfilePage extends StatelessWidget {
         child: Row(
           children: [
             Icon(icon, color: Colors.black,),
-            const SizedBox(width: 20.0),
+            const SizedBox(width: 10.0),
             Text(
               title,
-              style: const TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 15.0),
             ),
           ],
         ),
@@ -122,6 +124,7 @@ class UserProfilePage extends StatelessWidget {
 // Statistics Page
 class StatisticsPage extends StatelessWidget {
   const StatisticsPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +138,7 @@ class StatisticsPage extends StatelessWidget {
         child:
           Column(
             children: [
+              const SizedBox(height: 20,),
               const SizedBox(height: 20,),
           
               Container(
@@ -150,12 +154,15 @@ class StatisticsPage extends StatelessWidget {
                   children: [
                     const Text('Mood flow', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
+                    
                     Container(
                       width: 340,
                       height: 150,
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10), 
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(image: AssetImage('assets/images/moodflow.jpg'), 
+                        fit: BoxFit.cover),
                       ),
                     )
                   ],
@@ -175,11 +182,13 @@ class StatisticsPage extends StatelessWidget {
                   children: [
                     const Text('Best & Worst', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
+
                     Text('What makes you feel good',
                       style: TextStyle(
                         fontSize: 12, 
                         fontStyle: FontStyle.italic,
                         color: Colors.green[500]),),
+                    const SizedBox(height: 10),
                     const SizedBox(height: 10),
                     Row(
                       children: [
@@ -520,6 +529,7 @@ class StatisticsPage extends StatelessWidget {
                     
                     const Text('Favourite Tools', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10,),
+
                     Container(
                       width: 340,
                       height: 50,
@@ -529,10 +539,12 @@ class StatisticsPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+
                           const SizedBox(width: 5,),
                           const CircleAvatar(
                             radius: 20,
-                            backgroundColor: Colors.grey,
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: AssetImage('assets/images/43.png'),
                           ),
                           const SizedBox(width: 10,),
 
@@ -553,10 +565,12 @@ class StatisticsPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+
                           const SizedBox(width: 5,),
                           const CircleAvatar(
                             radius: 20,
-                            backgroundColor: Colors.grey,
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: AssetImage('assets/images/44.png'),
                           ),
                           const SizedBox(width: 10,),
 
@@ -577,10 +591,12 @@ class StatisticsPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+
                           const SizedBox(width: 5,),
                           const CircleAvatar(
                             radius: 20,
-                            backgroundColor: Colors.grey,
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: AssetImage('assets/images/42.png'),
                           ),
                           const SizedBox(width: 10,),
 
@@ -609,6 +625,7 @@ class StatisticsPage extends StatelessWidget {
 class PhotosPage extends StatelessWidget {
   const PhotosPage({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -622,6 +639,7 @@ class PhotosPage extends StatelessWidget {
         child : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+ 
             const SizedBox(height: 20),
             const Text('    Oct 2024', 
             style:TextStyle(fontSize: 16,fontStyle: FontStyle.italic, color: Colors.grey) ,),
@@ -641,6 +659,7 @@ class PhotosPage extends StatelessWidget {
 // Profile Page
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -670,7 +689,7 @@ class ProfilePage extends StatelessWidget {
                   CircleAvatar(
                     radius: 40.0,
                     backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage('assets/images/yap.png'),
+                    backgroundImage: AssetImage('assets/images/emma.png'),
                   )
                 ],
               ),
@@ -681,12 +700,13 @@ class ProfilePage extends StatelessWidget {
                 height: 1,
                 color: Colors.grey[400],
               ),
+
               const SizedBox(height: 20),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Username'),
-                  Text('Yap')
+                  Text('Emma')
                 ],
               ),
               const SizedBox(height: 20),
@@ -703,7 +723,7 @@ class ProfilePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Email'),
-                  Text('yap123@gmail.com'),
+                  Text('emma123@gmail.com'),
             ],
         ),
              const SizedBox(height: 20),
@@ -755,6 +775,7 @@ class ProfilePage extends StatelessWidget {
 class AIPage extends StatelessWidget {
   const AIPage({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -763,129 +784,196 @@ class AIPage extends StatelessWidget {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
-      body: Column(
-          children: [
-            const SizedBox(height: 20),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-              width: 400,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(10), 
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text('MALTESE  '),
-                      Icon(Icons.edit, size: 12,color: Colors.grey[400],),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-
-                  const CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('assets/images/maltese.png'),
-                  ),
-
-                  const SizedBox(height: 10),
-                  const Text('Language'),
-                  const SizedBox(height: 8),
-                  Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
-                  
-
-                  const SizedBox(height: 10),
-                  const Text('Tone'),
-                  const SizedBox(height: 8),
-                  Text('Caring & Lovely', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
-
-                  const SizedBox(height: 10),
-                  const Text('Description'),
-                  const SizedBox(height: 8),
-                  Text(' a friend that feels casual, authentic, and relatable. Instead of rushing to give advice, it mirrors the frustration or feelings shared, showing understanding without being preachy. ', 
-                  style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
-
-                  const SizedBox(height: 10),
-
-                  Container(
-                    width: 60,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      border: Border.all(
-                        color: Colors.black54,
-                        width: 1,
+      body: SingleChildScrollView(
+        child: Column(
+            children: [
+              const SizedBox(height: 20),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                width: 400,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(10), 
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text('MALTESE  '),
+                        Icon(Icons.edit, size: 12,color: Colors.grey[400],),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+        
+                    const CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage('assets/images/maltese.png'),
+                    ),
+        
+                    const SizedBox(height: 10),
+                    const Text('Language'),
+                    const SizedBox(height: 8),
+                    Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
+                    
+        
+                    const SizedBox(height: 10),
+                    const Text('Tone'),
+                    const SizedBox(height: 8),
+                    Text('Caring & Lovely', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
+        
+                    const SizedBox(height: 10),
+                    const Text('Description'),
+                    const SizedBox(height: 8),
+                    Text('With his fluffy white fur and lively spirit, he bring joy and warmth to your day. Always ready to listen and share in your experiences.', 
+                    style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
+        
+                    const SizedBox(height: 10),
+        
+                    Container(
+                      width: 60,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        border: Border.all(
+                          color: Colors.black54,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(10), 
                       ),
-                      borderRadius: BorderRadius.circular(10), 
-                    ),
-                    child: const Center(
-                      child: Text('default',
-                      
-                      style: TextStyle(color: Colors.black54),),
-                    ),
-                  )          
-
-
-                ],
+                      child: const Center(
+                        child: Text('default',
+                        
+                        style: TextStyle(color: Colors.black54),),
+                      ),
+                    )          
+        
+        
+                  ],
+                ),
               ),
+              
+               Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                width: 400,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(10), 
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text('WOODY  '),
+                        Icon(Icons.edit, size: 12,color: Colors.grey[400],),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+        
+                    const CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage('assets/images/woody.png'),
+                    ),
+        
+                    const SizedBox(height: 10),
+        
+                    const Text('Language'),
+        
+                    const SizedBox(height: 8),
+                    Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
+                    
+        
+                    const SizedBox(height: 10),
+        
+                    const Text('Tone'),
+        
+                    const SizedBox(height: 8),
+                    Text('Friendly & Optimistic', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
+        
+                    const SizedBox(height: 10),
+        
+                    const Text('Description'),
+                    const SizedBox(height: 8),
+                    Text('With his playful cowboy charm, he keeps things light-hearted and knows just the right words to boost your confidence or help you reflect.', 
+                    style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
+        
+            ],
+          ),
+        )
+            ]
             ),
-            
-             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-              width: 400,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(10), 
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text('WOODY  '),
-                      Icon(Icons.edit, size: 12,color: Colors.grey[400],),
-                    ],
+      ));
+  }
+}
+
+class TalkPage extends StatelessWidget {
+  const TalkPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(width: 21),
+
+              Text('Talk to Someone', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ],
+          ),
+          const SizedBox(height: 9),
+            GestureDetector(
+              child: const Image(image: AssetImage("assets/images/tiredAI.png")),
+            ),
+            const SizedBox(height: 9),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 20),
+                const Text(
+                  "Virtual Consultation",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(height: 10),
+                ),
+                SizedBox(width: 130),
+                Text('See more', style: TextStyle(fontSize: 12, color: Colors.grey[400]),),
+                Icon(Icons.arrow_forward_rounded, color: Colors.grey[400], size: 16),
 
-                  const CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('assets/images/woody.png'),
+              ],
+            ),
+
+            SizedBox(height: 10,),
+
+          Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: SizedBox(
+                    height: 165,
+                    child: ListView.builder(
+                      itemCount: 4,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Consult(index: index);
+                      },
+                    ),
                   ),
-
-                  const SizedBox(height: 10),
-
-                  const Text('Language'),
-
-                  const SizedBox(height: 8),
-                  Text('English', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
-                  
-
-                  const SizedBox(height: 10),
-
-                  const Text('Tone'),
-
-                  const SizedBox(height: 8),
-                  Text('Caring & Lovely', style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic),),
-
-                  const SizedBox(height: 10),
-
-                  const Text('Description'),
-                  const SizedBox(height: 8),
-                  Text('A wise friend who listens deeply and offers thoughtful insights, helping you find clarity and peace.', 
-                  style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
-
-          ],
-        ),
-      )
-          ]
-    ));
+                ),
+        ],
+      ),
+    );
   }
 }
