@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class Inventory extends StatefulWidget {
 
-  const Inventory({super.key, required this.tabIndex});
+  const Inventory({super.key, required this.tabIndex, required this.onTap});
   final int tabIndex;
+  final Function(int) onTap;
 
   @override
   State<Inventory> createState() => _InventoryState();
@@ -60,11 +61,11 @@ class _InventoryState extends State<Inventory> {
             itemBuilder: (context, index) {
               switch(widget.tabIndex) {
                 case 0:
-                  return ItemTile(imagePath: image0[index], itemName: name0[index]);
+                  return ItemTile(imagePath: image0[index], itemName: name0[index], isFurniture: true, index: index, onTap: widget.onTap,);
                 case 1:
-                  return ItemTile(imagePath: image1[index], itemName: name1[index]);
+                  return ItemTile(imagePath: image1[index], itemName: name1[index], isFurniture: false, index: index, onTap: widget.onTap,);
                 case 2:
-                  return ItemTile(imagePath: image2[index], itemName: name2[index]);
+                  return ItemTile(imagePath: image2[index], itemName: name2[index], isFurniture: false, index: index, onTap: widget.onTap,);
               }
               return null;               
             },
@@ -79,11 +80,17 @@ class ItemTile extends StatelessWidget {
 
   final String imagePath;
   final String itemName;
+  final bool isFurniture;
+  final int index;
+  final Function(int) onTap;
 
   const ItemTile({
     super.key,
     required this.imagePath,
-    required this.itemName
+    required this.itemName,
+    required this.isFurniture,
+    required this.index,
+    required this.onTap
   });
 
   @override
@@ -100,9 +107,16 @@ class ItemTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            isFurniture ?
+            GestureDetector(
+              onTap: () => onTap(index),
+              child: Image.asset(
+              imagePath,
+              height: 64),
+            ) :
             Image.asset(
-            imagePath,
-            height: 64),
+              imagePath,
+              height: 64),
             Text(itemName)
           ],
         ),

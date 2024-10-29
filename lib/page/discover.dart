@@ -89,7 +89,7 @@ class _DiscoverState extends State<Discover> {
                 ),
                 const Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                    padding: EdgeInsets.symmetric(horizontal: 9.0),
                     child: Image(image: AssetImage("assets/images/letter.png")),
                   )
                 ),

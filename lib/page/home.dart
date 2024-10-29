@@ -27,6 +27,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
 
   bool _isLoading = false;
   bool _isOpen = false;
+  List<bool> isFurniture = [false, false, false, false, false, false];
 
   late final GenerativeModel _model;
   late final ChatSession _chat;
@@ -101,6 +102,19 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
     });
   }
 
+  // Method to change the value of an element in the list
+  void changeFurnitureStatus(int index) {
+    if (index >= 0 && index < isFurniture.length) {
+      setState(() {
+        isFurniture[index] = !isFurniture[index];
+      });
+      
+      log("Function to change is called");
+    } else {
+      log("Index out of range");
+    }
+  }
+
   @override
   void initState() {
     _model = GenerativeModel(model: 'gemini-1.5-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
@@ -127,6 +141,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
     super.build(context); 
 
     final messages = Provider.of<MessageProvider>(context).messages;
+    final double roomHeight = MediaQuery.of(context).size.height/2;
+    final double roomWidth = MediaQuery.of(context).size.width;
 
     TabController tabController = TabController(length: 3, vsync: this);
 
@@ -140,8 +156,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                 Stack(
                   children: [ 
                     Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height/2,
+                      width: roomWidth,
+                      height: roomHeight,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/images/empty_room3.jpg'),
@@ -149,9 +165,69 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 300),
-                      child: Center(
+                    isFurniture[5] 
+                    ? Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.55, left: roomWidth*0.1),
+                      child: const Image(
+                      image: AssetImage('assets/images/plant.png'),
+                      width: 100, 
+                      height: 100, 
+                      ),
+                    )
+                    : Container(),
+                    isFurniture[0]
+                    ? Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.7, left: roomWidth*0.05),
+                      child: const Image(
+                      image: AssetImage('assets/images/mirror.png'),
+                      width: 100, 
+                      height: 100, 
+                      ),
+                    )
+                    : Container(),
+                    isFurniture[1] 
+                    ? Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.3, left: roomWidth*0.5),
+                      child: const Image(
+                      image: AssetImage('assets/images/shelf.png'),
+                      width: 100, 
+                      height: 100, 
+                      ),
+                    )
+                    : Container(),
+                    isFurniture[3]
+                    ? Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.55, left: roomWidth*0.65),
+                      child: const Image(
+                      image: AssetImage('assets/images/lamp.png'),
+                      width: 100, 
+                      height: 100, 
+                      ),
+                    )
+                    : Container(),
+                    isFurniture[4]
+                    ? Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.6, left: roomWidth*0.5),
+                      child: const Image(
+                      image: AssetImage('assets/images/sofa.png'),
+                      width: 80, 
+                      height: 80, 
+                      ),
+                    )
+                    : Container(),
+                    isFurniture[2]
+                    ? Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.65, left: roomWidth*0.65),
+                      child: const Image(
+                      image: AssetImage('assets/images/table.png'),
+                      width: 85, 
+                      height: 85, 
+                      ),
+                    )
+                    : Container(),
+                    Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.65),
+                      child: const Center(
                         child: Image(
                           image: AssetImage('assets/gif/dog1_bigger.gif'),
                         ),
@@ -353,10 +429,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                     height: MediaQuery.of(context).size.height*0.43 - 71,
                     child: TabBarView(
                       controller: tabController,
-                      children: const [
-                        Inventory(tabIndex: 0),
-                        Inventory(tabIndex: 1),
-                        Inventory(tabIndex: 2),
+                      children: [
+                        Inventory(tabIndex: 0, onTap: changeFurnitureStatus,),
+                        Inventory(tabIndex: 1, onTap: changeFurnitureStatus,),
+                        Inventory(tabIndex: 2, onTap: changeFurnitureStatus,),
                       ],
                     ),
                   ),

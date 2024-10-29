@@ -45,19 +45,19 @@ class UserProfilePage extends StatelessWidget {
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildMenuItem(context, 'Statistics', Icons.bar_chart, StatisticsPage()),
+                        _buildMenuItem(context, 'Statistics', Icons.bar_chart, const StatisticsPage()),
           
                         const SizedBox(height: 20,),
           
-                        _buildMenuItem(context, 'Photos', Icons.photo, PhotosPage()),
+                        _buildMenuItem(context, 'Photos', Icons.photo, const PhotosPage()),
           
                         const SizedBox(height: 20,),
           
-                        _buildMenuItem(context, 'Profile', Icons.person, ProfilePage()),
+                        _buildMenuItem(context, 'Profile', Icons.person, const ProfilePage()),
           
                         const SizedBox(height: 20,),
                         
-                        _buildMenuItem(context, 'AI', Icons.smart_toy, AIPage()),
+                        _buildMenuItem(context, 'AI', Icons.smart_toy, const AIPage()),
                       ],
                     ),
                 ],
