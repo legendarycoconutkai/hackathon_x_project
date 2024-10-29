@@ -38,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               OnboardingPage(
                 image: 'assets/images/journaling.png',
-                title: 'Effortless Journaling',
+                title: 'Effortless Diarying',
                 description: 'Let the AI summarize your conversations into diary entries, making it easy to reflect and grow.',
               ),
             ],

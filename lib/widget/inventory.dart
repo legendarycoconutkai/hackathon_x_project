@@ -108,16 +108,12 @@ class ItemTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            tabIndex == 0 || tabIndex == 1 ?
             GestureDetector(
               onTap: () => onTap(index),
               child: Image.asset(
               imagePath,
               height: 64),
-            ) : 
-            Image.asset(
-              imagePath,
-              height: 64),
+            ),
             Text(itemName)
           ],
         ),

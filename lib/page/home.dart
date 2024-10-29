@@ -37,6 +37,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
     'assets/gif/lazydog.gif',
     'assets/gif/jumpdog.gif'
   ];
+  bool _isEating = false;
 
   late final GenerativeModel _model;
   late final ChatSession _chat;
@@ -154,6 +155,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
 
   // Method to change the value of an element in the list
   void changeTreatStatus(int index) {
+      setState(() {
+        _isEating = !_isEating;
+        Future.delayed(const Duration(seconds: 1), () {
+          setState(() {
+            _isEating = !_isEating;
+          });
+        });
+      });
   }
 
   @override
@@ -342,7 +351,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                       ),
                     )
                     : Container(),
-                    Padding(
+                    _isEating
+                    ? Padding(
+                      padding: EdgeInsets.only(top: roomHeight*0.65),
+                      child: const Center(
+                        child: SizedBox(
+                          height: 120,
+                          width: 120,
+                          child: Image(
+                            image: AssetImage('assets/gif/eatdog.gif'),
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                    )
+                    : Padding(
                       padding: EdgeInsets.only(top: roomHeight*0.65),
                       child: Center(
                         child: Image(

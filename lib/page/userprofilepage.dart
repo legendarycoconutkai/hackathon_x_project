@@ -150,8 +150,7 @@ class StatisticsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Statistics"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: background,
       ),
       body: SingleChildScrollView(
         child:
@@ -650,8 +649,7 @@ class PhotosPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Photos"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: background
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -697,8 +695,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: background
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -812,8 +809,7 @@ class AIPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("AI"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: background
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -951,7 +947,7 @@ class TalkPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: background,
         title: const Text('Talk to Someone', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
       ),
       body: Column(
