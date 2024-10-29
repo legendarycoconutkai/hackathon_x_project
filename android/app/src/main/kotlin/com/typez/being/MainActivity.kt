@@ -1,4 +1,4 @@
-package com.being.package.name
+package com.typez.being
 
 import io.flutter.embedding.android.FlutterActivity
 
