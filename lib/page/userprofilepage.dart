@@ -4,8 +4,6 @@ import 'package:hackathon_x_project/widget/consult.dart';
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
 
-  const UserProfilePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,13 +125,11 @@ class UserProfilePage extends StatelessWidget {
 class StatisticsPage extends StatelessWidget {
   const StatisticsPage({super.key});
 
-  const StatisticsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Statistics"),
         title: const Text("Statistics"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -147,9 +143,7 @@ class StatisticsPage extends StatelessWidget {
           
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
@@ -160,8 +154,7 @@ class StatisticsPage extends StatelessWidget {
                   children: [
                     const Text('Mood flow', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
-                    const Text('Mood flow', style: TextStyle(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10),
+                    
                     Container(
                       width: 340,
                       height: 150,
@@ -178,9 +171,7 @@ class StatisticsPage extends StatelessWidget {
           
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
@@ -191,8 +182,7 @@ class StatisticsPage extends StatelessWidget {
                   children: [
                     const Text('Best & Worst', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
-                    const Text('Best & Worst', style: TextStyle(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10),
+
                     Text('What makes you feel good',
                       style: TextStyle(
                         fontSize: 12, 
@@ -209,7 +199,6 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -255,7 +244,6 @@ class StatisticsPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 15),
-                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -263,7 +251,6 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -308,7 +295,6 @@ class StatisticsPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 15),
-                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -316,7 +302,6 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -363,13 +348,11 @@ class StatisticsPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    const SizedBox(height: 20),
                     Text('What makes you feel down',
                       style: TextStyle(
                         fontSize: 12, 
                         fontStyle: FontStyle.italic,
                         color: Colors.red[500]),),
-                    const SizedBox(height: 10),
                     const SizedBox(height: 10),
                     Row(
                       children: [
@@ -380,7 +363,6 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -425,7 +407,6 @@ class StatisticsPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 15),
-                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -433,7 +414,6 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -478,7 +458,6 @@ class StatisticsPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 15),
-                        const SizedBox(width: 15),
                         Container(
                           width: 100,
                           height: 120,
@@ -486,7 +465,6 @@ class StatisticsPage extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10), 
                           ),
-                          child: const Column(
                           child: const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -539,9 +517,7 @@ class StatisticsPage extends StatelessWidget {
           
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   width: 400,
-                  padding: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
@@ -553,20 +529,17 @@ class StatisticsPage extends StatelessWidget {
                     
                     const Text('Favourite Tools', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10,),
-                    const Text('Favourite Tools', style: TextStyle(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10,),
+
                     Container(
                       width: 340,
                       height: 50,
-                      decoration: const BoxDecoration(
                       decoration: const BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 5,),
-                          const CircleAvatar(
+
                           const SizedBox(width: 5,),
                           const CircleAvatar(
                             radius: 20,
@@ -574,12 +547,9 @@ class StatisticsPage extends StatelessWidget {
                             backgroundImage: AssetImage('assets/images/43.png'),
                           ),
                           const SizedBox(width: 10,),
-                          const SizedBox(width: 10,),
 
                           const Text('Music     '),
-                          const Text('Music     '),
                           
-                          const SizedBox(width: 180,),
                           const SizedBox(width: 180,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
@@ -590,14 +560,12 @@ class StatisticsPage extends StatelessWidget {
                       width: 340,
                       height: 50,
                       decoration: const BoxDecoration(
-                      decoration: const BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 5,),
-                          const CircleAvatar(
+
                           const SizedBox(width: 5,),
                           const CircleAvatar(
                             radius: 20,
@@ -605,12 +573,9 @@ class StatisticsPage extends StatelessWidget {
                             backgroundImage: AssetImage('assets/images/44.png'),
                           ),
                           const SizedBox(width: 10,),
-                          const SizedBox(width: 10,),
 
                           const Text('Meditate'),
-                          const Text('Meditate'),
                           
-                          const SizedBox(width: 180,),
                           const SizedBox(width: 180,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
@@ -621,14 +586,12 @@ class StatisticsPage extends StatelessWidget {
                       width: 340,
                       height: 50,
                       decoration: const BoxDecoration(
-                      decoration: const BoxDecoration(
                         color: Colors.transparent,                        
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 5,),
-                          const CircleAvatar(
+
                           const SizedBox(width: 5,),
                           const CircleAvatar(
                             radius: 20,
@@ -636,12 +599,9 @@ class StatisticsPage extends StatelessWidget {
                             backgroundImage: AssetImage('assets/images/42.png'),
                           ),
                           const SizedBox(width: 10,),
-                          const SizedBox(width: 10,),
 
                           const Text('Exercise '),
-                          const Text('Exercise '),
                           
-                          const SizedBox(width: 180,),
                           const SizedBox(width: 180,),
 
                           Icon(Icons.arrow_upward_rounded, color: Colors.amber[700],),
@@ -665,13 +625,11 @@ class StatisticsPage extends StatelessWidget {
 class PhotosPage extends StatelessWidget {
   const PhotosPage({super.key});
 
-  const PhotosPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Photos"),
         title: const Text("Photos"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -681,8 +639,7 @@ class PhotosPage extends StatelessWidget {
         child : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-            const Text('    Oct 2024', 
+ 
             const SizedBox(height: 20),
             const Text('    Oct 2024', 
             style:TextStyle(fontSize: 16,fontStyle: FontStyle.italic, color: Colors.grey) ,),
@@ -703,13 +660,11 @@ class PhotosPage extends StatelessWidget {
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
         title: const Text("Profile"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -718,9 +673,7 @@ class ProfilePage extends StatelessWidget {
         child: Center(
           child: Container(
           margin: const EdgeInsets.all(20),
-          margin: const EdgeInsets.all(20),
           width: 400,
-          padding: const EdgeInsets.all(20),
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.grey[300],
@@ -729,7 +682,6 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -743,14 +695,12 @@ class ProfilePage extends StatelessWidget {
               ),
               
               const SizedBox(height: 20),
-              const SizedBox(height: 20),
               Container(
                 width: 340,
                 height: 1,
                 color: Colors.grey[400],
               ),
-              const SizedBox(height: 20),
-              const Row(
+
               const SizedBox(height: 20),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -760,7 +710,6 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const SizedBox(height: 20),
 
               Container(
                 width: 340,
@@ -769,9 +718,7 @@ class ProfilePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
-              const SizedBox(height: 20),
 
-              const Row(
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -779,7 +726,6 @@ class ProfilePage extends StatelessWidget {
                   Text('emma123@gmail.com'),
             ],
         ),
-             const SizedBox(height: 20),
              const SizedBox(height: 20),
 
              Container(
@@ -789,9 +735,7 @@ class ProfilePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
-              const SizedBox(height: 20),
 
-             const Row(
              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -799,7 +743,6 @@ class ProfilePage extends StatelessWidget {
                   Text('012-3456789'),
             ],
         ),
-              const SizedBox(height: 20),
               const SizedBox(height: 20),
 
               Container(
@@ -809,9 +752,7 @@ class ProfilePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
-              const SizedBox(height: 20),
 
-              const Row(
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -834,13 +775,11 @@ class ProfilePage extends StatelessWidget {
 class AIPage extends StatelessWidget {
   const AIPage({super.key});
 
-  const AIPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("AI"),
         title: const Text("AI"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -889,7 +828,7 @@ class AIPage extends StatelessWidget {
                     const SizedBox(height: 10),
                     const Text('Description'),
                     const SizedBox(height: 8),
-                    Text(' a friend that feels casual, authentic, and relatable. Instead of rushing to give advice, it mirrors the frustration or feelings shared, showing understanding without being preachy. ', 
+                    Text('With his fluffy white fur and lively spirit, he bring joy and warmth to your day. Always ready to listen and share in your experiences.', 
                     style: TextStyle(color: Colors.blueAccent[700],fontStyle: FontStyle.italic)),
         
                     const SizedBox(height: 10),
