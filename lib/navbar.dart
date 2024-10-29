@@ -21,7 +21,7 @@ class _FrameState extends State<Frame> {
     const Discover(),
     const Home(),
     const Shop(),
-     UserProfilePage(),
+    UserProfilePage(),
   ];
 
   @override

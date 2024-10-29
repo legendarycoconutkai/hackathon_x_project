@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 
 class EventDetail {
   final DateTime date;
@@ -6,6 +7,7 @@ class EventDetail {
   final String description;
   final String? emoji;
   final String? image; // Optional image field for each event detail
+  final XFile? imageFile; // Optional image file path for each event detail
 
   EventDetail({
     required this.date,
@@ -14,6 +16,7 @@ class EventDetail {
     required this.description,
     this.emoji,
     this.image,
+    this.imageFile,
   });
 }
 
@@ -32,7 +35,7 @@ final List<EventDetail> sharedEvents = [
     title: '',
     time: '2:00 PM',
     description: 'more happi',
-    image: 'assets/bored gif.png',
+    image: 'assets/images/bored gif.png',
   ),
   EventDetail(
     date: DateTime(2024, 10, 24),

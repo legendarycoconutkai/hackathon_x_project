@@ -24,7 +24,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 _currentPage = page;
               });
             },
-            children: [
+            children: const [
               OnboardingPage(
                 image: 'assets/images/privatespace.png',
                 title: 'Your Private Space',

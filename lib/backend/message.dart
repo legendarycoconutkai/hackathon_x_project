@@ -10,4 +10,13 @@ class Message {
     required this.isUser,
     this.image
   });
+
+  @override
+  String toString() {
+    return '${isUser ? 'User: ' : 'AI: '}$text\n\n';
+  }
+
+  static String convertMessagesToString(List<Message> messages) {
+    return messages.map((message) => message.toString()).join();
+  }
 }
