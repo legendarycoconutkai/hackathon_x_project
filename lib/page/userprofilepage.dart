@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
+import 'package:hackathon_x_project/page/login.dart';
 import 'package:hackathon_x_project/widget/consult.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -7,7 +9,7 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: background,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
         child: Column(
@@ -23,7 +25,7 @@ class UserProfilePage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 50.0,
-                    backgroundColor: Colors.transparent,
+                    backgroundColor: Colors.white,
                     backgroundImage: AssetImage('assets/images/emma.png'),
                   ),
                   SizedBox(height: 10.0),
@@ -73,7 +75,10 @@ class UserProfilePage extends StatelessWidget {
             // Bottom items
             TextButton(
               onPressed: () {
-                // Log out action
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                );
               },
               child: const Text(
                 'Log Out',
@@ -921,19 +926,13 @@ class TalkPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        title: const Text('Talk to Someone', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(width: 21),
 
-              Text('Talk to Someone', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-            ],
-          ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 30),
             GestureDetector(
               child: const Image(image: AssetImage("assets/images/tiredAI.png")),
             ),

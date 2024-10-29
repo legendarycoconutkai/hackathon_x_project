@@ -1,9 +1,11 @@
-import 'dart:developer';
+import 'dart:developer' as developer;
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
 import 'package:hackathon_x_project/widget/inventory.dart';
 import 'package:hackathon_x_project/backend/message.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -23,18 +25,26 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
 
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  late TabController tabController;
   XFile? image;
 
   bool _isLoading = false;
   bool _isOpen = false;
   List<bool> isFurniture = [false, false, false, false, false, false];
+  List<bool> isRoom = [false, false, false, false, false, false];
+  final List<String> gifPaths = [
+    'assets/gif/smartdog.gif',
+    'assets/gif/lovedog.gif',
+    'assets/gif/lazydog.gif',
+    'assets/gif/jumpdog.gif'
+  ];
 
   late final GenerativeModel _model;
   late final ChatSession _chat;
 
   callGeminiModel() async {
     try {
-      log("callGeminiModel was run");
+      //developer.log("callGeminiModel was run");
       if (image == null) {
         if (_controller.text.isNotEmpty) {
           _addMessage(Message(text: _controller.text, isUser: true));
@@ -82,7 +92,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
       });
       _scrollToBottom();
     } catch (e) {
-      log("Error : $e");
+      //developer.log("Error : $e");
+      _addMessage(Message(text: "Error : $e", isUser: false));
     }
   }
 
@@ -109,16 +120,49 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
         isFurniture[index] = !isFurniture[index];
       });
       
-      log("Function to change is called");
+      //developer.log("Function to change is called");
     } else {
-      log("Index out of range");
+      //developer.log("Index out of range");
     }
+  }
+
+  // Method to change the value of an element in the list
+  void changeRoomStatus(int index) {
+    if (index >= 0 && index < isRoom.length) {
+      if (index >= 0 && index < 3) {
+        final bool receivedIndex = isRoom[index];
+        isRoom[0] = false;
+        isRoom[1] = false;
+        isRoom[2] = false;
+        setState(() {
+          isRoom[index] = !receivedIndex;
+        });
+      } else {
+        final bool receivedIndex = isRoom[index];
+        isRoom[3] = false;
+        isRoom[4] = false;
+        isRoom[5] = false;
+        setState(() {
+          isRoom[index] = !receivedIndex;
+        });
+      }
+      
+      //developer.log("Function to change is called");
+    } else {
+      //developer.log("Index out of range");
+    }
+  }
+
+  // Method to change the value of an element in the list
+  void changeTreatStatus(int index) {
   }
 
   @override
   void initState() {
     _model = GenerativeModel(model: 'gemini-1.5-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
     _chat = _model.startChat();
+
+    tabController = TabController(length: 3, vsync: this);
 
     KeyboardVisibilityController().onChange.listen((bool visible) {
       setState(() {
@@ -132,6 +176,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
   @override
   void dispose() {
     _scrollController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 
@@ -144,9 +189,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
     final double roomHeight = MediaQuery.of(context).size.height/2;
     final double roomWidth = MediaQuery.of(context).size.width;
 
-    TabController tabController = TabController(length: 3, vsync: this);
+    final randomGif = gifPaths[Random().nextInt(gifPaths.length)];
 
     return Scaffold(
+      backgroundColor: background,
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -165,6 +211,78 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                         ),
                       ),
                     ),
+                    isRoom[0]
+                    ? Container(
+                      width: roomWidth,
+                      height: roomHeight,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/xwall1.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                    : Container(),
+                    isRoom[1]
+                    ? Container(
+                      width: roomWidth,
+                      height: roomHeight,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/xwall2.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                    : Container(),
+                    isRoom[2]
+                    ? Container(
+                      width: roomWidth,
+                      height: roomHeight,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/xwall3.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                    : Container(),
+                    isRoom[3]
+                    ? Container(
+                      width: roomWidth,
+                      height: roomHeight,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/xfloor1.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                    : Container(),
+                    isRoom[4]
+                    ? Container(
+                      width: roomWidth,
+                      height: roomHeight,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/xfloor2.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                    : Container(),
+                    isRoom[5]
+                    ? Container(
+                      width: roomWidth,
+                      height: roomHeight,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/xfloor3.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                    : Container(),
                     isFurniture[5] 
                     ? Padding(
                       padding: EdgeInsets.only(top: roomHeight*0.55, left: roomWidth*0.1),
@@ -197,7 +315,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                     : Container(),
                     isFurniture[3]
                     ? Padding(
-                      padding: EdgeInsets.only(top: roomHeight*0.55, left: roomWidth*0.65),
+                      padding: EdgeInsets.only(top: roomHeight*0.51, left: roomWidth*0.65),
                       child: const Image(
                       image: AssetImage('assets/images/lamp.png'),
                       width: 100, 
@@ -227,9 +345,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                     : Container(),
                     Padding(
                       padding: EdgeInsets.only(top: roomHeight*0.65),
-                      child: const Center(
+                      child: Center(
                         child: Image(
-                          image: AssetImage('assets/gif/dog1_bigger.gif'),
+                          image: AssetImage(randomGif),
                         ),
                       ),
                     ),
@@ -261,7 +379,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                                 child: Container(
                                   padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
-                                  color: message.isUser ? Colors.blue : Colors.green,
+                                  color: message.isUser ? primary : tertiary,
                                   borderRadius: message.isUser
                                     ? const BorderRadius.only(
                                       topLeft: Radius.circular(20),
@@ -402,7 +520,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                   const BarIndicator(),
                   Container(
                     decoration: const BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.white
                     ),
                     child: TabBar(
                       controller: tabController,
@@ -422,20 +540,27 @@ class _HomeState extends State<Home> with TickerProviderStateMixin, AutomaticKee
                     ),
                   ),
                   Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height*0.43 - 71,
-                    child: TabBarView(
+                    height: 1,
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                      color: background,
+                      ),
+                      child: TabBarView(
                       controller: tabController,
                       children: [
                         Inventory(tabIndex: 0, onTap: changeFurnitureStatus,),
-                        Inventory(tabIndex: 1, onTap: changeFurnitureStatus,),
-                        Inventory(tabIndex: 2, onTap: changeFurnitureStatus,),
+                        Inventory(tabIndex: 1, onTap: changeRoomStatus,),
+                        Inventory(tabIndex: 2, onTap: changeTreatStatus,),
                       ],
+                      ),
                     ),
-                  ),
+                    ),
                 ],
               ),
             ),

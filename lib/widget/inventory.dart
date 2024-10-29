@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
 
 class Inventory extends StatefulWidget {
 
@@ -44,8 +45,8 @@ class _InventoryState extends State<Inventory> {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration: BoxDecoration(
+          color: background,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -61,11 +62,11 @@ class _InventoryState extends State<Inventory> {
             itemBuilder: (context, index) {
               switch(widget.tabIndex) {
                 case 0:
-                  return ItemTile(imagePath: image0[index], itemName: name0[index], isFurniture: true, index: index, onTap: widget.onTap,);
+                  return ItemTile(imagePath: image0[index], itemName: name0[index], index: index, onTap: widget.onTap, tabIndex: widget.tabIndex,);
                 case 1:
-                  return ItemTile(imagePath: image1[index], itemName: name1[index], isFurniture: false, index: index, onTap: widget.onTap,);
+                  return ItemTile(imagePath: image1[index], itemName: name1[index], index: index, onTap: widget.onTap, tabIndex: widget.tabIndex,);
                 case 2:
-                  return ItemTile(imagePath: image2[index], itemName: name2[index], isFurniture: false, index: index, onTap: widget.onTap,);
+                  return ItemTile(imagePath: image2[index], itemName: name2[index], index: index, onTap: widget.onTap, tabIndex: widget.tabIndex,);
               }
               return null;               
             },
@@ -80,16 +81,16 @@ class ItemTile extends StatelessWidget {
 
   final String imagePath;
   final String itemName;
-  final bool isFurniture;
   final int index;
+  final int tabIndex;
   final Function(int) onTap;
 
   const ItemTile({
     super.key,
     required this.imagePath,
     required this.itemName,
-    required this.isFurniture,
     required this.index,
+    required this.tabIndex,
     required this.onTap
   });
 
@@ -107,13 +108,13 @@ class ItemTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            isFurniture ?
+            tabIndex == 0 || tabIndex == 1 ?
             GestureDetector(
               onTap: () => onTap(index),
               child: Image.asset(
               imagePath,
               height: 64),
-            ) :
+            ) : 
             Image.asset(
               imagePath,
               height: 64),

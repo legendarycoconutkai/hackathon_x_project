@@ -35,7 +35,7 @@ final List<EventDetail> sharedEvents = [
     title: '',
     time: '2:00 PM',
     description: 'more happi',
-    image: 'assets/images/bored gif.png',
+    image: 'assets/gif/lazydog.gif',
   ),
   EventDetail(
     date: DateTime(2024, 10, 24),

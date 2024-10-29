@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
 
 class PopularContainer extends StatelessWidget{
 
@@ -19,7 +20,7 @@ class PopularContainer extends StatelessWidget{
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.grey,
+        color: primary,
       ),
       padding: const EdgeInsets.all(9),
       child: Column(
@@ -58,7 +59,7 @@ class PopularContainer extends StatelessWidget{
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                  color: Colors.black, fontSize: 15,),
               ),
             ],
           ),

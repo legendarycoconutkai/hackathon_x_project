@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/backend/colour.dart';
 
 class EventContainer extends StatelessWidget{
 
@@ -25,7 +26,7 @@ class EventContainer extends StatelessWidget{
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.grey,
+        color: secondary,
       ),
       padding: const EdgeInsets.all(9),
       child: Column(
@@ -64,7 +65,7 @@ class EventContainer extends StatelessWidget{
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                  color: Colors.black, fontSize: 15,),
               ),
             ],
           ),

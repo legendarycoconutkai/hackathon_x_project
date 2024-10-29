@@ -1,4 +1,4 @@
-package com.example.hackathon_x_project
+package com.being.package.name
 
 import io.flutter.embedding.android.FlutterActivity
 

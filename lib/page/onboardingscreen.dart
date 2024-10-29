@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_x_project/page/profile.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -28,12 +29,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               OnboardingPage(
                 image: 'assets/images/privatespace.png',
                 title: 'Your Private Space',
-                description: 'Record your thoughts and  track how you feel in a safe, private diary.',
+                description: 'Record your thoughts and track how you feel in a safe, private diary.',
               ),
               OnboardingPage(
                 image: 'assets/images/under.png',
                 title: 'AI That Understands You',
-                description: 'Customize an AI that cares for you like a friend. It adapts to your style, offering support that feels personal.',
+                description: 'Have an AI that cares for you like a friend. It adapts to your style, offering support that feels personal.',
               ),
               OnboardingPage(
                 image: 'assets/images/journaling.png',
@@ -55,7 +56,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               right: 20,
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigate to the main page of your app
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Profile()),
+                  );
                 },
                 child: const Text("Get Started"),
               ),
