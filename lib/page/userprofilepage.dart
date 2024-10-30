@@ -40,7 +40,7 @@ class UserProfilePage extends StatelessWidget {
                   CircleAvatar(
                     radius: 50.0,
                     backgroundColor: Colors.white,
-                    backgroundImage: image != null ? FileImage(File(image!.path)) : null,
+                    backgroundImage: image != null ? FileImage(File(image.path)) : null,
                   ),
                   const SizedBox(height: 10.0),
                   Text(

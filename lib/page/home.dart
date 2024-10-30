@@ -1,3 +1,46 @@
+// The `Home` widget is a stateful widget that represents the home page of the application.
+// It includes various functionalities such as sending messages, displaying images, and 
+// interacting with a generative model.
+//
+// The widget uses several packages including:
+// - `flutter/material.dart` for UI components.
+//- `flutter_dotenv/flutter_dotenv.dart` for environment variables.
+// - `google_generative_ai/google_generative_ai.dart` for generative AI functionalities.
+// - `provider/provider.dart` for state management.
+// - `image_picker/image_picker.dart` for image picking functionalities.
+// - `sliding_up_panel/sliding_up_panel.dart` for a sliding up panel UI component.
+// - `flutter_keyboard_visibility/flutter_keyboard_visibility.dart` for keyboard visibility detection.
+//
+// The `Home` widget maintains several states including:
+// - `_controller`: A `TextEditingController` for managing the text input.
+// - `_scrollController`: A `ScrollController` for managing the scroll position of the message list.
+// - `tabController`: A `TabController` for managing the tab navigation.
+// - `image`: An `XFile` object representing the selected image.
+// - `_isLoading`: A boolean indicating whether a request is in progress.
+// - `_isOpen`: A boolean indicating whether the sliding panel is open.
+// - `isFurniture`: A list of booleans representing the status of furniture items.
+//- `isRoom`: A list of booleans representing the status of room designs.
+// - `gifPaths`: A list of strings representing the paths to GIF assets.
+// - `_isEating`: A boolean indicating whether the eating animation is active.
+// - `_model`: A `GenerativeModel` object for interacting with the generative AI model.
+// - `_chat`: A `ChatSession` object for managing the chat session with the generative AI model.
+//
+// The `Home` widget includes several methods:
+// - `callGeminiModel`: Sends a message to the generative AI model and handles the response.
+// - `_addMessage`: Adds a message to the message provider.
+// - `_scrollToBottom`: Scrolls the message list to the bottom.
+// - `changeFurnitureStatus`: Toggles the status of a furniture item.
+// - `changeRoomStatus`: Toggles the status of a room design.
+// - `changeTreatStatus`: Toggles the eating animation status.
+// - `imagePickerMethod`: Opens the image picker to select an image.
+//
+// The `Home` widget builds a UI that includes:
+// - A background image representing the room.
+// - Various furniture and room design elements that can be toggled.
+// - A list of messages displayed in a chat-like interface.
+// - An input field for sending messages and selecting images.
+// - A sliding up panel with tabs for selecting furniture, room designs, and treats.
+
 import 'dart:io';
 import 'dart:math';
 

@@ -1,5 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 
+// dart class for managing messages
 class Message {
   final String text;
   final bool isUser;

@@ -1,5 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 
+// dart file to store user information
 class UserInfo {
   static final UserInfo _instance = UserInfo._internal();
 

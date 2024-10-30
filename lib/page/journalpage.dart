@@ -1,3 +1,30 @@
+// A Flutter widget that represents the journal page of the application.
+// 
+// This page displays a calendar and a list of events for the selected date.
+// Users can select a date from the calendar to view the events for that day.
+// 
+// The page consists of the following main components:
+// - An app bar with a background color.
+// - A calendar widget that allows users to select a date.
+// - A section displaying the selected date and its details.
+// - A list of events for the selected date.
+// 
+// The calendar widget uses the `TableCalendar` package to display the calendar.
+// The events are filtered based on the selected date and displayed in a list.
+// 
+// The `_JournalPageState` class manages the state of the `JournalPage` widget.
+// It handles the selection of dates and updates the list of events accordingly.
+// 
+// The `EventDetail` class is used to represent the details of an event.
+// The `sharedEvents` list contains all the events that are shared across the application.
+// 
+// The `_updateSelectedEvents` method updates the list of events for the selected date.
+// The `_getSelectedDayData` method retrieves the event details for a specific date.
+// The `_onDaySelected` method handles the selection of a date from the calendar.
+// 
+// The `build` method constructs the UI of the journal page, including the calendar,
+// selected date details, and the list of events.
+
 import 'package:flutter/material.dart';
 import 'package:hackathon_x_project/backend/colour.dart';
 import 'package:hackathon_x_project/backend/event_model.dart';

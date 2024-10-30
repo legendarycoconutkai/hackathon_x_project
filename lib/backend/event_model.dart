@@ -1,14 +1,16 @@
 import 'package:image_picker/image_picker.dart';
 
+// Model class for event details
 class EventDetail {
-  final DateTime date;
-  final String title;
-  final String time;
-  final String description;
-  final String? emoji;
+  final DateTime date; // Date of the event
+  final String title; // Title of the event
+  final String time; // Time of the event
+  final String description; // Description of the event
+  final String? emoji; // Optional emoji representing the mood of the event
   final String? image; // Optional image field for each event detail
   final XFile? imageFile; // Optional image file path for each event detail
 
+  // Constructor for EventDetail
   EventDetail({
     required this.date,
     required this.title,
@@ -125,4 +127,3 @@ final List<EventDetail> sharedEvents = [
     image: 'assets/images/rooftopcafe.jpg',
   ),
 ];
-

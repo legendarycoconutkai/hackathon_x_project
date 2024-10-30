@@ -7,6 +7,7 @@ import 'package:hackathon_x_project/page/journalpage.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
+// Main widget for the new calendar page
 class Newcalendar extends StatefulWidget {
   const Newcalendar({super.key});
 
@@ -15,9 +16,10 @@ class Newcalendar extends StatefulWidget {
 }
 
 class _NewcalendarState extends State<Newcalendar> {
+  // Selected day in the calendar
   DateTime _selectedDay = DateTime.now();
 
-  // Event retrieval from sharedEvents
+  // Retrieve event details for the selected day
   EventDetail? _getSelectedDayData(DateTime selectedDay) {
     for (var event in sharedEvents) {
       if (isSameDay(event.date, selectedDay)) {
@@ -30,11 +32,13 @@ class _NewcalendarState extends State<Newcalendar> {
   @override
   void initState() {
     super.initState();
+    // Analyze messages and create events when the widget is initialized
     analyzeMessagesAndCreateEvent(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    // Get event details for the selected day
     EventDetail? selectedDayData = _getSelectedDayData(_selectedDay);
     
     return Scaffold(
@@ -45,6 +49,7 @@ class _NewcalendarState extends State<Newcalendar> {
               physics: const ClampingScrollPhysics(),
               child: Column(
                 children: [
+                  // Calendar icon button to navigate to the JournalPage
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Row(
@@ -55,17 +60,18 @@ class _NewcalendarState extends State<Newcalendar> {
                           icon: const Icon(Icons.calendar_month_outlined),
                           color: Colors.black,
                           tooltip: 'Week View',
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const JournalPage()),
-                              );
-                            },
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const JournalPage()),
+                            );
+                          },
                         ),
                       ],
                     ),
                   ),
               
+                  // TableCalendar widget to display the calendar
                   TableCalendar(
                     headerStyle: const HeaderStyle(
                       formatButtonVisible: false,
@@ -105,8 +111,7 @@ class _NewcalendarState extends State<Newcalendar> {
                             style: TextStyle(
                               fontSize: 16,
                               color: emojiPath != null ? Colors.transparent : Colors.black,
-                              fontWeight:
-                                  emojiPath != null ? FontWeight.w700 : FontWeight.w400,
+                              fontWeight: emojiPath != null ? FontWeight.w700 : FontWeight.w400,
                             ),
                           ),
                         );
@@ -116,6 +121,7 @@ class _NewcalendarState extends State<Newcalendar> {
               
                   const SizedBox(height: 10),
               
+                  // Display event details for the selected day
                   Align(
                     alignment: Alignment.topCenter,
                     child: selectedDayData != null && selectedDayData.description.isNotEmpty
@@ -153,8 +159,6 @@ class _NewcalendarState extends State<Newcalendar> {
                                                   ),
                                                 )
                                               : null,
-        
-                                            
                                     ),
               
                                     const SizedBox(height: 5),

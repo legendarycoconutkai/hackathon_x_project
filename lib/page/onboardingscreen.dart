@@ -1,3 +1,14 @@
+// This file contains the implementation of the OnboardingScreen widget, which
+// is a stateful widget that displays a series of onboarding pages to the user.
+//
+// The OnboardingScreen consists of:
+// - A PageView that allows the user to swipe through different onboarding pages.
+// - A row of dots at the bottom of the screen indicating the current page.
+// - A "Get Started" button that navigates to the Profile screen when the user
+//   reaches the last onboarding page.
+//
+// The OnboardingPage is a stateless widget that represents a single page in the
+// onboarding flow. Each OnboardingPage displays an image, a title, and a description.
 import 'package:flutter/material.dart';
 import 'package:hackathon_x_project/page/profile.dart';
 

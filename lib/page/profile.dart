@@ -1,3 +1,19 @@
+// A Flutter widget that represents a user profile page.
+//
+// This widget allows users to view and edit their profile information,
+// including their profile picture, full name, email, phone number, and password.
+// Users can also see the date they joined the application.
+//
+// The profile page includes the following features:
+// - Display and update profile picture using the device's image gallery.
+// - Form fields for full name, email, phone number, and password.
+// - A button to create an account and navigate to the main frame of the application.
+// - Display the date the user joined the application.
+//
+// The profile picture can be updated by tapping on the camera icon overlaying the current profile picture.
+// The form fields allow users to input and update their personal information.
+// The "Create Account" button saves the information and navigates to the main frame.
+//
 import 'dart:io';
 
 import 'package:flutter/material.dart';

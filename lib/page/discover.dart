@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_x_project/widget/discover_tools_container.dart';
 
+// Main Discover widget which is a StatefulWidget
 class Discover extends StatefulWidget {
   const Discover({super.key});
 
@@ -8,8 +9,10 @@ class Discover extends StatefulWidget {
   State<Discover> createState() => _DiscoverState();
 }
 
+// State class for Discover widget
 class _DiscoverState extends State<Discover> {
 
+  // Boolean to track if the letter is open
   bool isLetterOpen = false;
 
   @override
@@ -18,8 +21,10 @@ class _DiscoverState extends State<Discover> {
       body: SafeArea(
         child: Stack(
           children: [
+            // Main content of the page
             ListView(
               children: [
+                // Top row with mail and search icons
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
@@ -35,18 +40,20 @@ class _DiscoverState extends State<Discover> {
                       IconButton(
                         icon: const Icon(Icons.search),
                         onPressed: () {
-                          //open search bar
+                          // open search bar
                         },
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 9),
+                // Discover title
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 9.0),
                   child: Text("Discover", style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
                 ),
                 const SizedBox(height: 9),
+                // Banner image that opens the letter when tapped
                 GestureDetector(
                   child: const Image(
                     image: AssetImage("assets/images/letterbanner.png"),
@@ -58,11 +65,13 @@ class _DiscoverState extends State<Discover> {
                   },
                 ),
                 const SizedBox(height: 18),
+                // Tools section title
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 9.0),
                   child: Text("Tools", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
                 ),
                 const SizedBox(height: 18),
+                // List of tools
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: ListView.builder(
@@ -76,9 +85,11 @@ class _DiscoverState extends State<Discover> {
                 ),
               ],
             ),
+            // Overlay when the letter is open
             isLetterOpen 
             ? Stack(
               children: [
+                // Dark overlay background
                 GestureDetector(
                   child: Container(
                     color: Colors.black.withOpacity(0.6),
@@ -87,6 +98,7 @@ class _DiscoverState extends State<Discover> {
                     isLetterOpen = false;
                   }),
                 ),
+                // Centered letter image
                 const Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 9.0),
