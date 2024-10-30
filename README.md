@@ -1,16 +1,19 @@
-# hackathon_x_project
+# Being - Your AI Mental Wellness Companion 🌟
 
-A new Flutter project.
+## Description
 
-## Getting Started
+Being is a mental wellness app designed to empower individuals aged 15 to 45 in managing their mental health through personalized, AI-driven journaling and emotional support. Whether users need a safe space to express their emotions, track their mood patterns, or gain insights into their mental well-being, Being provides a compassionate, interactive experience that combines modern technology with thoughtful design.
 
-This project is a starting point for a Flutter application.
+## Key Features
 
-A few resources to get you started if this is your first Flutter project:
+AI Buddy: A personalized, responsive companion designed to listen, engage, and encourage reflection. Users can share stories, and thoughts, and even receive heartwarming letters for added support.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Smart Journaling: Journals are generated from daily interactions with the AI buddy, transforming reflections and emotions into organized diary entries.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Mental Health Tools: Meditation guides, reading resources, calming music, and podcast recommendations to support mental wellness.
+
+Customizable Experiences: Users can personalize their AI buddy's environment, design their space, and unlock new aesthetics via microtransactions.
+
+Mood & Behavior Tracker: Tracks emotional patterns, behaviors, and habits over time, offering users insights into their mental state and tailored self-care suggestions.
+
+Professional Integration: Provides access to licensed therapists for users seeking real-time guidance and deeper support.
